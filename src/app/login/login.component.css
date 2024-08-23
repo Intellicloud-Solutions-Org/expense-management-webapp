@@ -1,0 +1,68 @@
+
+  .inputName {
+    background: transparent; /* Keeping the background transparent */
+    color: white; /* Text color */
+    border: none; /* Remove all borders */
+    border-bottom: 2px solid #00BFFF; /* Underline with light blue color */
+    padding: 10px 5px; /* Padding for better spacing */
+    font-size: 16px; /* Font size */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition for underline color */
+  }
+
+  .inputName::placeholder {
+    color: aliceblue; /* Placeholder color */
+    opacity: 1; /* Ensure placeholder color is fully opaque */
+  }
+
+  .inputName:focus {
+    border-bottom: 2px solid #1E90FF; /* Change underline color on focus */
+    box-shadow: 0 1px 0 0 rgba(30, 144, 255, 0.5); /* Add a subtle shadow below underline on focus */
+    outline: none; /* Remove default outline */
+  }
+
+  .login-class{
+    color: white;
+  }
+
+  .register-link{
+    color: #209e91;
+  }
+
+  .btn-primary {
+    background-color: #209e91; /* Cyan color */
+    border-color: #00bcd4; /* Border color */
+    color: white; /* Text color */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
+  }
+  
+  .btn-primary:hover {
+    background-color: #0097a7; /* Darker cyan for hover effect */
+    border-color: #0097a7; /* Darker border color */
+  }
+  
+  .btn-primary:focus, .btn-primary:active {
+    box-shadow: 0 0 0 0.2rem rgba(0, 188, 212, 0.25); /* Optional shadow effect */
+  }
+
+  .bold-text {
+    cursor: pointer; /* Optional: to indicate it's clickable */
+    display: inline-block; /* Allows the box effect to fit around the text */
+    padding: 4px 8px; /* Optional: space inside the box */
+    border-radius: 4px; /* Optional: rounded corners */
+    transition: background-color 0.3s, border 0.3s; /* Smooth transition */
+  }
+  
+  .bold-text:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Change the background color on hover */
+    border: 1px solid lightgray; /* Add a border on hover */
+  }
+
+  /* .icon {
+    color: white; 
+    transition: color 0.3s ease, transform 0.3s ease; 
+  }
+  .icon:hover {
+    color: rgb(133, 147, 252); 
+    transform: scale(1.1); 
+  } 
+  */

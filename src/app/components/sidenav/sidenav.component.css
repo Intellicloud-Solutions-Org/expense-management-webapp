@@ -1,0 +1,104 @@
+mat-sidenav-container {
+  height: 100%;
+}
+
+
+mat-sidenav, mat-sidenav-content {
+  padding: 16px;
+}
+
+/* Update mat-sidenav background color and font color */
+mat-sidenav {
+  background-color: #1c2b36 !important; /* Set background color to blue */
+  color: white !important; /* Set font color to white */
+  width: 250px !important;
+  border-top-right-radius: 0px !important;
+}
+
+/* Ensure the styles are applied to the specific list item */
+.nav-item {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  color: white; /* Set default text color to white */
+}
+
+/* Change font color of icon and text when hovering over the item */
+.nav-item:hover,
+.nav-item:hover mat-icon,
+.nav-item:hover .nav-text {
+  color: #209e91 !important; /* Apply cyan color on hover */
+}
+
+/* Style for active/selected list item */
+.list-item-active,
+.list-item-active mat-icon,
+.list-item-active .nav-text {
+  color: cyan !important; /* Set selected item color to cyan */
+}
+
+.sidenav-content-bg {
+  background-color: #bcbcbe; /* Replace with your desired color */
+}
+
+
+.admin-nav-item{
+  margin-top: 10px;
+}
+mat-icon {
+  color: #05234f;
+  font-family: 'Material Icons';
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+a.tog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  background-color: #e1ebe7;
+  border-radius: 45%;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  margin-left: -15px;
+  margin-top: -15px;
+}
+a.tog:hover {
+  background-color: #d4f2f4;
+  color: #edeef3; 
+}
+a.tog mat-icon {
+  font-size: 24px;
+}
+
+/* Apply white text color to all elements inside sidenav */
+mat-sidenav * {
+  color: white !important;
+}
+
+.nav-item.list-item-active 
+{
+  
+  background-color: cyan !important;
+}
+
+.admin-nav-item .nav-icon,
+.admin-nav-item .nav-text {
+  color: #209e91  !important; /* Ensure text and icon color change */
+}
+
+
+.admin-nav-item:hover .nav-icon,
+.admin-nav-item:hover .nav-text {
+  color: white  !important; /* Ensure text and icon color change */
+ 
+}
+
+.admin-nav-item:hover {
+  background-color: #209e91 !important; /* Change background color */
+ 
+}

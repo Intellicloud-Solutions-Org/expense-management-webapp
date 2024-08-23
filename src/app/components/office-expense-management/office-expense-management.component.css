@@ -1,0 +1,136 @@
+.info-box {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 20px;
+    margin: -20px 0;
+    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  }
+
+  .header-top{
+    font-size: 24px; /* Adjust the size as needed */
+  font-weight: bold;
+  color: #808080;
+  }
+
+  .table th{
+    text-align: center;
+    color: #f4f5f7;
+    background-color: #0e8174;
+     font-size: 15px;
+  }
+
+  .custom-checkbox {
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .select{
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    margin-bottom: 15px;
+  }
+
+  .pagination-controls {
+    display: flex;
+    justify-content: right;
+    margin: 10px 0;
+  }
+
+  /* Pagination CSS */
+  .pagination-controls .pagination {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  
+  .pagination-controls {
+    display: flex;
+    justify-content: right;
+    margin: 10px 0;
+  }
+  
+  .pagination-controls .pagination li a {
+    display: block;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #0e8174; 
+  }
+  
+  
+  .pagination-controls .pagination li.active a {
+    background-color: #0e8174; 
+    color: #fff;
+  }
+  
+  .pagination-controls .pagination li a:hover {
+    background-color: #0e8174; 
+    color: #fff;
+  }
+  
+  .pagination-controls .pagination li.disabled a {
+    color: #6c757d;
+    pointer-events: none;
+  }
+
+  .name{
+    text-align: left;
+  }
+  
+  .amount{
+    text-align: right;
+  }
+
+  .data{
+    text-align: left;
+  }
+
+  .date{
+    text-align: center;
+  }
+
+  .receipt{
+    text-align: center;
+  }
+  table td button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Space between buttons */
+  }
+  
+  table td button:nth-child(1) {
+    background-color: #28a745; /* Green for Approve */
+  }
+  
+  table td button:nth-child(2) {
+    background-color: #dc3545; /* Red for Reject */
+  }
+  
+  table td button:hover {
+    opacity: 0.8;
+  }
+  
+  /* Comments Textarea Styles */
+  table td textarea {
+    width: 100%;
+  padding: 5px;
+  border: 1px solid #ddd; /* Optional: Add a light border */
+  border-radius: 4px;
+  background-color: transparent; /* Make the background transparent */
+  box-sizing: border-box;
+  color: #000; 
+  }

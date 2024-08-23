@@ -1,0 +1,81 @@
+<div class="container-fluid content">
+    <div class="info-box p-4 border bg-light mt-1">
+        <div class="header-box">
+            <p class="header-top">ADMIN DASHBOARD</p>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4 mb-2">
+                <div class="card">
+                    <div class="card-body d-flex align-items-center">
+                        <i class="fa-solid fa-sack-dollar icon-1 card-icon me-3"></i>
+                        <div>
+                        <h5 class="card-title">Total Office Expenses</h5>
+                        <p class="card-text">{{ totalOfficeExpenses | number }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="col-md-4 mb-2">
+                <div class="card">
+                  <div class="card-body d-flex align-items-center">
+                    <i class="fa-solid fa-boxes-stacked icon-2 card-icon me-3"></i>
+                    <div>
+                      <h5 class="card-title">Total Inventory Value</h5>
+                      <p class="card-text">{{ totalInventoryValue | number }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <div class="col-md-4 mb-2">
+                <div class="card">
+                    <div class="card-body d-flex align-items-center">
+                        <i class="fa-solid fa-arrow-up-1-9 icon-3 card-icon me-3"></i>
+                        <div>
+                        <h5 class="card-title">Number of Vendors</h5>
+                        <p class="card-text">{{ numberOfVendors | number }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row chart mt-5 mb-5 ">
+            <div class="col-md-6 line-chart">
+                <canvas id="lineChart" baseChart 
+                [type]="'line'"
+                [data]="lineChartData"
+                [options]="lineChartOptions">
+                </canvas>
+              </div>
+              <div class="col-md-6 pie-chart">
+                <canvas baseChart
+                  [data]="pieChartData"
+                  [type]="'pie'"
+                  [options]="pieChartOptions">
+                </canvas>
+              </div>
+        </div>
+        <div class="table-container mt-3">
+          <h5 class="text-center mt-2 text-bold"> Expense Report </h5>
+          
+              <table class="table table-striped table-bordered">
+                  <thead>
+                      <tr>
+                          <th>Employee Name</th>
+                          <th>Expense Type</th>
+                          <th>Submission Date</th>
+                          <th>Amount</th>
+                          <th>Approval Status</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let employee of tableData">
+                      <td class="name">{{ employee.employeeName }}</td>
+                      <td class="new-column">{{ employee.expenseType }}</td>
+                      <td class="date">{{ employee.submissionDate | date:'MMM d, y' }}</td>
+                      <td class="amount">{{ employee.amount | number:'1.2-2' }}</td>
+                      <td class="status">{{ employee.status }}</td>
+                    </tr>
+                  </tbody>
+                  </table>
+            </div>
+</div>

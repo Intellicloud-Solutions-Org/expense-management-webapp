@@ -1,0 +1,73 @@
+<div class="container-fluid content">
+
+    <div class="info-box p-4 border bg-light mt-1">
+                <p class="header-top">EXPENSE</p>
+                <form>
+                    <!-- Row 1: Date Field -->
+                    <div class="form-row justify-content-end mb-3">
+                        <div class="col mb-4 date-group">
+                            <label for="date">Date:</label>
+                            <span class="date-display">{{ defaultDate }}</span>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Employee Details -->
+                    <div class="form-row mb-4">
+                        <div class="col mb-4">
+                            <input type="text" class="form-control" id="employeeName" placeholder="Employee Name" disabled>
+                        </div>
+                        <div class="col mb-4">
+                            <input type="text" class="form-control" id="employeeId"  placeholder="Employee ID" disabled>
+                        </div>
+                        <div class="col mb-4">
+                            <input type="text" class="form-control" id="designation" placeholder="Employee Designation" disabled>
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Manager, Expense Type, Expense Amount -->
+                    <!-- Manager Dropdown-->
+                    <div class="form-row mb-4">
+                        <div class="col mb-4">
+                            <input type="text"
+                            [(ngModel)]="asyncSelected"
+                            [typeahead]="dataSource"
+                            class="form-control"
+                            (typeaheadLoading)="changeTypeaheadLoading($event)"
+                            (typeaheadNoResults)="changeTypeaheadNoResults($event)"
+                            placeholder="Select Manager (Type here to search..)"
+                            id="typeahead-basic">
+                        </div>
+
+                        <!--Expense Type-->
+                        <div class="col mb-4">
+                            <select class="form-control" id="expenseType" required style="color: teal">
+                            <option value="">Select Expense Type</option>
+                            <option *ngFor="let type of expenseTypes" [value]="type">{{ type }}</option>
+                            </select>
+                        </div>
+
+                        <!--Expense Amount-->
+                        <div class="col mb-4">
+                            <input type="number" class="form-control" id="expenseAmount" placeholder="Expense Amount" required>
+                        </div>
+                    </div>
+
+                    <!-- Row 4: File Upload -->
+                    <div class="form-row mb-1">
+                        <div class="col receipt-grp">
+                            <label class="label" for="receipts">Upload Receipts</label>
+                            <div>
+                            <input type="file" class="form-control-file receipt-input" id="receipts" accept=".jpg,.png,.pdf"  required>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Row 5: Submit Button -->
+                    <div class="form-row mt-1">
+                        <div class="col-md-12 text-right">
+                            <button type="submit" class="btn btn-primary">Send for Approval</button>
+                        </div>
+                    </div>
+                </form>
+        </div>
+</div>
+

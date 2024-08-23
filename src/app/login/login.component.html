@@ -1,0 +1,242 @@
+
+  <section class="vh-100">
+    <div class="p-5" style="background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);height: 200px;"></div>
+  <div class="card mx-5 mx-md-4 shadow-5-strong bg-body-tertiary" style="
+  margin-top: -130px;
+  backdrop-filter: blur(30px);
+  background-image: linear-gradient(to top, #233246 0%, #2f4558 100%);
+  ">
+<div class="container py-5 h-100">
+<div class="row d-flex justify-content-center align-items-center h-100">
+<div class="col-xl-10">
+  <div class="row g-0">
+    <div class="col-md-6 d-none d-md-block">
+      <img src="https://img.freepik.com/premium-vector/cartoon-girl-analyzes-her-spending-graph-laptop-people-planning-budget-process-analyzing-personal-corporate-budget-accounting-calculation-financial-income-vector_776652-3627.jpg" alt="login form" class="img-fluid h-100" style="border-radius: 1rem 1rem 1rem 1rem; object-fit: cover;" />
+    </div>
+    <div class="col-md-6 d-flex align-items-center">
+      <div class="card-body p-4 p-lg-5">
+                  <!--Login Form-->
+            @if(isLoginView) {
+            <form  [formGroup]="userForm">
+              <h3 class="fw-bold mb-3" style="letter-spacing: 1px; color: #f2f7f2;">
+                Login
+              </h3>
+              <div data-mdb-input-init class="form-outline mb-4">
+                <input
+                  placeholder="Username" 
+                  name="userName"
+                  [(ngModel)]="userLogin.userName"
+                  type="email"
+                  id="form2Example18"
+                  class="form-control form-control-lg inputName"
+                  formControlName="userName"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    userForm.controls['userName'].invalid &&
+                    (userForm.controls['userName'].touched ||
+                      userForm.controls['userName'].dirty)">
+                  <span
+                    *ngIf="userForm.controls['userName'].errors?.['required']">
+                    This is Required
+                  </span>
+                </div>
+              </div>
+
+              <div data-mdb-input-init class="form-outline mb-4">
+                <input
+                  placeholder="**********"
+                  name="password"
+                  [(ngModel)]="userLogin.password"
+                  type="password"
+                  id="form2Example28"
+                  class="form-control form-control-lg inputName"
+                  formControlName="password"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    userForm.controls['password'].invalid &&
+                    (userForm.controls['password'].touched ||
+                      userForm.controls['password'].dirty)">
+                  <span *ngIf="userForm.controls['password'].errors?.['required']">
+                    This is Required
+                  </span>
+                </div>
+              </div>
+              <!--Login Button-->
+              <div class="pt-1">
+                <button
+                type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4 w-100"
+                  (click)="onLogin()">
+                  Login
+                </button>
+              </div>
+              <p class="text-white mb-2 bold-text" (click)="isLoginView = false">
+                New User? Click Here
+              </p>
+            </form>
+            <!--Register Form-->
+            } @else {
+            <form [formGroup]="userForm">
+              <h3 class="fw-bold mb-3" style="letter-spacing: 1px; color: #f2f7f2;">
+                Register
+              </h3>
+
+              <div data-mdb-input-init class="form-outline mb-3">
+                <input
+                  placeholder="Email"
+                  name="emailId"
+                  [(ngModel)]="userRegisterObj.emailId"
+                  type="email"
+                  id="form2Example18"
+                  class="form-control form-control-lg inputName"
+                  formControlName="emailId"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    userForm.controls['emailId'].invalid &&
+                    (userForm.controls['emailId'].touched ||
+                      userForm.controls['emailId'].dirty)">
+                  <span
+                    *ngIf="userForm.controls['emailId'].errors?.['required']">
+                    This is Required
+                  </span>
+                  <span *ngIf="userForm.controls['emailId'].errors?.['email']">
+                    Email Is Not Proper
+                  </span>
+                </div>
+              </div>
+
+              <div data-mdb-input-init class="form-outline mb-3">
+                <input
+                  placeholder="User Name"
+                  name="userName"
+                  [(ngModel)]="userRegisterObj.userName"
+                  type="email"
+                  id="form2Example18"
+                  class="form-control form-control-lg inputName"
+                  formControlName="userName"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    userForm.controls['userName'].invalid &&
+                    (userForm.controls['userName'].touched ||
+                      userForm.controls['userName'].dirty)">
+                  <span
+                    *ngIf="userForm.controls['userName'].errors?.['required']"
+                  >
+                    This is Required
+                  </span>
+                  <span
+                    *ngIf="userForm.controls['userName'].errors?.['maxlength']"
+                  >
+                    User Name must be no more than 8 characters long
+                  </span>
+                </div>
+              </div>
+
+              <div data-mdb-input-init class="form-outline mb-3">
+                <input
+                  placeholder="Company Name"
+                  name="companyname"
+                  [(ngModel)]="userRegisterObj.companyname"
+                  type=""
+                  id="form2Example18"
+                  class="form-control form-control-lg inputName"
+                  formControlName="companyname"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    userForm.controls['companyname'].invalid &&
+                    (userForm.controls['companyname'].touched ||
+                      userForm.controls['companyname'].dirty)">
+                  <span
+                    *ngIf="userForm.controls['companyname'].errors?.['required']"
+                  >
+                    This is Required
+                  </span>
+                  </div>
+                  </div>
+
+              <div data-mdb-input-init class="form-outline mb-3">
+                <input
+                  placeholder="**********"
+                  name="password"
+                  [(ngModel)]="userRegisterObj.password"
+                  type="password"
+                  id="form2Example28"
+                  class="form-control form-control-lg inputName"
+                  formControlName="password"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    userForm.controls['password'].invalid &&
+                    (userForm.controls['password'].touched ||
+                      userForm.controls['password'].dirty)
+                  "
+                >
+                  <span
+                    *ngIf="userForm.controls['password'].errors?.['required']"
+                  >
+                    This is Required
+                  </span>
+                  <span
+                    *ngIf="userForm.controls['password'].errors?.['passwordStrength']"
+                    >Password must contain upper case, lower case, numeric, and
+                    special character.</span
+                  >
+                  <br />
+                  <span
+                    *ngIf="userForm.controls['password'].errors?.['minlength']"
+                    >Not less than 6 character</span
+                  >
+                  <span
+                    *ngIf="userForm.controls['password'].errors?.['maxlength']"
+                    >Not more than 20 character</span
+                  >
+                </div>
+              </div>
+              <!--Register Button-->
+              <div class="pt-1">
+                <button
+                type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4 w-100"
+                  (click)="onRegister()"
+                  [disabled]="userForm.invalid">
+                  Register
+                </button>
+              </div>
+              <p class="text-white mb-1 bold-text" (click)="isLoginView = true">
+                Have an account?
+              </p>
+            </form>
+            }
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+      </div>
+    </div>
+</section>
+
+
+  <!-- Register buttons 
+              <div class="text-left">
+                <p class="text-white mb-1">or sign up with:
+                <button  class="icon btn btn-link btn-floating mx-1" type="button" data-mdb-button-init data-mdb-ripple-init>
+                  <i class="fab fa-facebook-f"></i>
+                </button>
+
+                <button  class="icon btn btn-link btn-floating mx-1" type="button" data-mdb-button-init data-mdb-ripple-init>
+                  <i class="fab fa-google"></i>
+                </button>
+                </p>
+              </div>
+              
+              <button  type="button" data-mdb-button-init data-mdb-ripple-init class="link-info" (click)="isLoginView = false" class="btn btn-outline-success">Register here</button>-->

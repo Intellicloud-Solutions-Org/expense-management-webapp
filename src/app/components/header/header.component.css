@@ -1,0 +1,46 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .transparent-padding {
+    display: flex;
+    padding-top: 20px; /* Adjust padding as needed */
+    background-color: transparent;
+    margin: 10px;
+  }
+
+  .custom-toolbar {
+    background-color: #1c2b36; /* Change this to your desired color */
+    color: rgb(8, 6, 6); /* This changes the text color */
+}
+.name{
+    color: white;
+}
+.cloud{
+    color: #209e91;
+}
+
+.example-icon{
+    color: aliceblue;
+}
+.mat-icon{
+    color: aliceblue !important;
+    
+}
+
+.searchInput {
+    background: 0 0;
+    border: none;
+    outline: 0;
+    width: 120px;
+    padding: 0;
+    margin: 0 0 16px -700px;
+    height: 21px;
+    font-size: 15px;
+    caret-color: white;
+    color: white;
+}
+a{
+    margin-right: -10px;
+}
+

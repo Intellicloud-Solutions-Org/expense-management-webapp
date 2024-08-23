@@ -1,0 +1,87 @@
+.info-box {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 20px;
+    margin: -20px 0;
+    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+}
+
+.header-top{
+  font-size: 24px; /* Adjust the size as needed */
+  font-weight: bold;
+  color: #808080;
+}
+  
+.table th{
+  text-align: center;
+  color: #f4f5f7;
+  background-color: #0e8174;
+   font-size: 15px;
+}
+  
+.tb-data{
+  text-align: left;
+}
+
+.tb-amt {
+  position: relative; /* Allows precise positioning of elements */
+  /* Remove default padding for alignment */
+
+}
+
+/* Aligns the span to the right */
+.amount {
+  display: block; 
+  text-align: right; /* Right-align the amount */
+  padding-right: 10px; /* Add some padding for spacing */
+}
+
+/* Centers the input */
+.tb-amt-edit {
+  width: 80%; /* Adjust width as needed */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%); /* Center the input horizontally */
+  text-align: center; /* Center text inside the input */
+ 
+}
+
+.amt-box{
+  justify-content: center;
+}
+
+.tb-icons{
+  text-align: center;
+}
+
+.tb-data1{
+  width: 80px;
+  text-align: center;
+}
+
+.action-icon {
+  cursor: pointer;
+  color: #0e8174;
+  font-size: 18px;
+}
+  
+.action-icon:hover {
+  color: #39b1c6;
+}
+
+.fa-edit{
+  margin-right: 10px;
+}
+
+.fa-trash-alt{
+  margin-left: 10px;
+}
+
+.fa-check{
+  margin-right: 10px;
+}
+
+.fa-times{
+  margin-right: 10px;
+  margin-left: 10px;
+}
