@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, APP_INITIALIZER } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +13,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { initializeExpenseData } from '../app/app-init';
+import { ExpenseService } from './services/expense.service';
 
 
 
@@ -36,6 +38,16 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule
+  ],
+
+  providers: [
+    ExpenseService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeExpenseData,
+      deps: [ExpenseService],
+      multi: true,
+    },
   ],
 })
 export class AppModule {}

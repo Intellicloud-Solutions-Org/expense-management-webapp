@@ -18,10 +18,14 @@ export class ExpenseComponent implements OnInit {
   public asyncSelected: string = ''; // Initialize with an empty string
   public typeaheadLoading: boolean = false; // Initial value set to false
   public typeaheadNoResults: boolean = false; // Initial value set to false
-  public dataSource: string[] = ['Admin', 'Manager', 'Kritika']; // Simplified type declaration
+  public dataSource: string[] = []; // Simplified type declaration
 
   public expenseTypes: string[] = []; 
   public defaultDate: string; // Declare defaultDate
+
+  employeeName: string = '';
+  employeeId: string = '';
+  designation: string = '';
 
   constructor(private expenseService: ExpenseService) {
     const today = new Date();
@@ -33,6 +37,17 @@ export class ExpenseComponent implements OnInit {
     this.expenseService.getExpenseTypes().subscribe((data) => {
       this.expenseTypes = data;
     });
+
+    this.expenseService.getManagers().subscribe(data => {
+      this.dataSource = data;
+    });
+
+    const employeeData = this.expenseService.getEmployeeData();
+    if (employeeData) {
+      this.employeeName = employeeData.name;
+      this.employeeId = employeeData.id;
+      this.designation = employeeData.designation;
+    }
   }
 
   public changeTypeaheadLoading(isLoading: boolean): void {
