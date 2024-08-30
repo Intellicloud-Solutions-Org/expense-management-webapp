@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { DateUtils } from '../shared/utils/date';
+import { ExpenseUtils } from '../shared/utils/expenseType';
 
 
 @Injectable({
@@ -43,10 +45,10 @@ getPieChartData(): Observable<any> {
 
   getEmployeeData(): Observable<any[]> {
     const mockEmployeeData = [
-      { employeeName: 'John Doe', expenseType: 'Bills', submissionDate: '2024-07-01', amount: 1200, status: 'Approved' },
-      { employeeName: 'Jane Smith', expenseType: 'Travel', submissionDate: '2024-07-10', amount: 800, status: 'Pending' },
-      { employeeName: 'Alice Johnson', expenseType: 'Team Activities', submissionDate: '2024-07-15', amount: 1500, status: 'Approved' },
-      { employeeName: 'Bob Brown', expenseType: 'Professional Development', submissionDate: '2024-07-20', amount: 700, status: 'Rejected' }
+      { employeeName: 'John Doe', expenseType: ExpenseUtils.getExpenseType('Professional Development'), submissionDate: DateUtils.formatDate(new Date('2024-08-17')), amount: 1200, status: 'Approved' },
+      { employeeName: 'Jane Smith', expenseType: ExpenseUtils.getExpenseType('Bills'), submissionDate: DateUtils.formatDate(new Date('2024-08-17')), amount: 800, status: 'Pending' },
+      { employeeName: 'Alice Johnson', expenseType: ExpenseUtils.getExpenseType('Team Activities'), submissionDate: DateUtils.formatDate(new Date('2024-08-17')), amount: 1500, status: 'Approved' },
+      { employeeName: 'Bob Brown', expenseType: ExpenseUtils.getExpenseType('Travel'), submissionDate: DateUtils.formatDate(new Date('2024-08-17')), amount: 700, status: 'Rejected' }
     ];
     return of(mockEmployeeData); // Simulates a delay of 1 second
   }

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { DateUtils } from '../shared/utils/date';
+import { ExpenseUtils } from '../shared/utils/expenseType';
 
 @Injectable({
   providedIn: 'root'
@@ -63,9 +65,9 @@ getTableData(): Observable<any[]> {
   const dummyData = [
     {
       empName: 'John Doe',
-      expenseType: 'Travel',
+      expenseType: ExpenseUtils.getExpenseType('Team activities'),
       amount: 123.45,
-      submissionDate: new Date('2024-08-15'),
+      submissionDate: DateUtils.formatDate(new Date('2024-08-15')),
       receipt: 'receipt1.pdf',
       pendingApprovals: "Pending",
       comments: '',
@@ -73,9 +75,9 @@ getTableData(): Observable<any[]> {
     },
     {
       empName: 'Jane Smith',
-      expenseType: 'Bills',
+      expenseType: ExpenseUtils.getExpenseType('Bills'),
       amount: 67.89,
-      submissionDate: new Date('2024-08-16'),
+      submissionDate: DateUtils.formatDate(new Date('2024-08-16')),
       receipt: 'receipt2.pdf',
       pendingApprovals: "Pending",
       comments: '',
@@ -83,14 +85,27 @@ getTableData(): Observable<any[]> {
     },
     {
       empName: 'Bob Johnson',
-      expenseType: 'Team Activities',
+      expenseType: ExpenseUtils.getExpenseType('Travel'),
       amount: 34.56,
-      submissionDate: new Date('2024-08-17'),
+      submissionDate: DateUtils.formatDate(new Date('2024-08-17')),
+      receipt: 'receipt3.pdf',
+      pendingApprovals: "Pending",
+      comments: '',
+      selected: false // Add selected property here
+    },
+    {
+      empName: 'Alice Aloy',
+      expenseType: ExpenseUtils.getExpenseType('Professional Development'),
+      amount: 34.56,
+      submissionDate: DateUtils.formatDate(new Date('2024-08-17')),
       receipt: 'receipt3.pdf',
       pendingApprovals: "Pending",
       comments: '',
       selected: false // Add selected property here
     }
+
+
+
   ];
 
   // Simulate HTTP delay and return dummy table data

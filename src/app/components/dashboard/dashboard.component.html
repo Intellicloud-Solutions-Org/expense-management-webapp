@@ -107,7 +107,7 @@
                     <td class="name">{{ item.empName }}</td>
                     <td>{{ item.expenseType }}</td>
                     <td class="amount">{{ item.amount | number:'1.2-2' }}</td>
-                    <td class="date">{{ item.submissionDate | date:'MMM d, y' }}</td>
+                    <td class="date">{{ item.submissionDate }}</td>
                     <td class="receipt">
                         <a *ngIf="item.receipt" [href]="item.receipt" target="_blank">View</a>
                         <span *ngIf="!item.receipt">No Receipt</span>

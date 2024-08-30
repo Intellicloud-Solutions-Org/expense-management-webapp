@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { ExpenseUtils } from '../shared/utils/expenseType';
 
 @Injectable({
   providedIn: 'root'
@@ -32,8 +33,8 @@ export class ExpenseService {
   constructor(private http: HttpClient) {}
   // Simulate HTTP request and return dummy data
 
-  getExpenseTypes(): Observable<string[]> {
-    return of(['Travel', 'Team Activities', 'Professional Development', 'Bills']);
+  getExpenseType(): Observable<string[]> {
+    return of(ExpenseUtils.expenseTypes);
   }
 
   getManagers(): Observable<string[]> {

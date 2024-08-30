@@ -6,7 +6,7 @@ import { ReportService } from '../../services/report.service';
 
 interface Expense {
   empId: number;
-  expenseType: string;
+  expenseType: string | undefined;
   receipt: string | null;
   amount: number;
   status: string;

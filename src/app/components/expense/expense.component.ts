@@ -34,8 +34,8 @@ export class ExpenseComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.expenseService.getExpenseTypes().subscribe((data) => {
-      this.expenseTypes = data;
+    this.expenseService.getExpenseType().subscribe((types: string[]) => {
+      this.expenseTypes = types;
     });
 
     this.expenseService.getManagers().subscribe(data => {
