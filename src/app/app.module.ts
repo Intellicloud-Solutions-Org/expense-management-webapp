@@ -13,8 +13,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { initializeExpenseData } from '../app/app-init';
+import { initializeExpenseData, initializeUserData } from '../app/app-init';
 import { ExpenseService } from './services/expense.service';
+import { UserService } from '../app/services/user.service';
 
 
 
@@ -42,10 +43,17 @@ import { ExpenseService } from './services/expense.service';
 
   providers: [
     ExpenseService,
+    UserService, 
     {
       provide: APP_INITIALIZER,
       useFactory: initializeExpenseData,
       deps: [ExpenseService],
+      multi: true,
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeUserData,
+      deps: [UserService],
       multi: true,
     },
   ],
