@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { DateUtils } from '../shared/utils/date';
 import { ExpenseUtils } from '../shared/utils/expenseType';
+import { AmountUtils } from '../shared/utils/Amount';
 
 @Injectable({
   providedIn: 'root'
@@ -46,14 +47,6 @@ export class DashboardService {
           }
         ]
       },
-   
-
-    tableData: [
-      { expenseType: 'Travel', amount: 1001, pendingApprovals: 3 },
-      { expenseType: 'Team Activities', amount: 1002, pendingApprovals: 3 },
-      { expenseType: 'Professional Development', amount: 1003, pendingApprovals: 6 },
-      { expenseType: 'Bills', amount: 1004, pendingApprovals: 5 }
-    ]
   };
 
     // Simulate HTTP delay and return dummy data
@@ -66,7 +59,7 @@ getTableData(): Observable<any[]> {
     {
       empName: 'John Doe',
       expenseType: ExpenseUtils.getExpenseType('Team activities'),
-      amount: 123.45,
+      amount:  AmountUtils.formatAmount(1234.56),
       submissionDate: DateUtils.formatDate(new Date('2024-08-15')),
       receipt: 'receipt1.pdf',
       pendingApprovals: "Pending",
@@ -76,7 +69,7 @@ getTableData(): Observable<any[]> {
     {
       empName: 'Jane Smith',
       expenseType: ExpenseUtils.getExpenseType('Bills'),
-      amount: 67.89,
+      amount: AmountUtils.formatAmount(1234.56),
       submissionDate: DateUtils.formatDate(new Date('2024-08-16')),
       receipt: 'receipt2.pdf',
       pendingApprovals: "Pending",
@@ -86,7 +79,7 @@ getTableData(): Observable<any[]> {
     {
       empName: 'Bob Johnson',
       expenseType: ExpenseUtils.getExpenseType('Travel'),
-      amount: 34.56,
+      amount: AmountUtils.formatAmount(1234.56),
       submissionDate: DateUtils.formatDate(new Date('2024-08-17')),
       receipt: 'receipt3.pdf',
       pendingApprovals: "Pending",
@@ -96,7 +89,7 @@ getTableData(): Observable<any[]> {
     {
       empName: 'Alice Aloy',
       expenseType: ExpenseUtils.getExpenseType('Professional Development'),
-      amount: 34.56,
+      amount: AmountUtils.formatAmount(1234.56),
       submissionDate: DateUtils.formatDate(new Date('2024-08-17')),
       receipt: 'receipt3.pdf',
       pendingApprovals: "Pending",

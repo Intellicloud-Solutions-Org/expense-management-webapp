@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { DateUtils } from '../shared/utils/date';
 import { ExpenseUtils } from '../shared/utils/expenseType';
+import { AmountUtils } from '../shared/utils/Amount';
 
 
 @Injectable({
@@ -45,10 +46,10 @@ getPieChartData(): Observable<any> {
 
   getEmployeeData(): Observable<any[]> {
     const mockEmployeeData = [
-      { employeeName: 'John Doe', expenseType: ExpenseUtils.getExpenseType('Professional Development'), submissionDate: DateUtils.formatDate(new Date('2024-08-17')), amount: 1200, status: 'Approved' },
-      { employeeName: 'Jane Smith', expenseType: ExpenseUtils.getExpenseType('Bills'), submissionDate: DateUtils.formatDate(new Date('2024-08-17')), amount: 800, status: 'Pending' },
-      { employeeName: 'Alice Johnson', expenseType: ExpenseUtils.getExpenseType('Team Activities'), submissionDate: DateUtils.formatDate(new Date('2024-08-17')), amount: 1500, status: 'Approved' },
-      { employeeName: 'Bob Brown', expenseType: ExpenseUtils.getExpenseType('Travel'), submissionDate: DateUtils.formatDate(new Date('2024-08-17')), amount: 700, status: 'Rejected' }
+      { employeeName: 'John Doe', expenseType: ExpenseUtils.getExpenseType('Professional Development'), submissionDate: DateUtils.formatDate(new Date('2024-08-17')), amount: AmountUtils.formatAmount(1234.56), status: 'Approved' },
+      { employeeName: 'Jane Smith', expenseType: ExpenseUtils.getExpenseType('Bills'), submissionDate: DateUtils.formatDate(new Date('2024-08-17')), amount: AmountUtils.formatAmount(1234.56), status: 'Pending' },
+      { employeeName: 'Alice Johnson', expenseType: ExpenseUtils.getExpenseType('Team Activities'), submissionDate: DateUtils.formatDate(new Date('2024-08-17')), amount: AmountUtils.formatAmount(1234.56), status: 'Approved' },
+      { employeeName: 'Bob Brown', expenseType: ExpenseUtils.getExpenseType('Travel'), submissionDate: DateUtils.formatDate(new Date('2024-08-17')), amount: AmountUtils.formatAmount(1234.56), status: 'Rejected' }
     ];
     return of(mockEmployeeData); // Simulates a delay of 1 second
   }
