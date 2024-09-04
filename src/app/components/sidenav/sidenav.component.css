@@ -85,9 +85,13 @@ mat-sidenav * {
   background-color: cyan !important;
 }
 
-.admin-nav-item .nav-icon,
+.admin-nav-item .nav-icon{
+  color: #209e91  !important;
+}
 .admin-nav-item .nav-text {
   color: #209e91  !important; /* Ensure text and icon color change */
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 18px;
 }
 
 /*

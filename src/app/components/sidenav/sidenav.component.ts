@@ -35,20 +35,19 @@ export class SidenavComponent implements OnInit  {
     this.isExpanded = !this.isExpanded;
   }
 
-  routeToAdminDashboard(): void {
+  adminClicked(): void {
+    // Only allow this action if the user is an admin
     if (this.isAdmin) {
-      this.router.navigate(['/admin-dashboard']);
-    } else {
-      alert('Access denied. Not an admin.');
+      this.router.navigate(['/admin-dashboard']); // Navigate to Admin Dashboard
+    }
+  }
+  
+  routeToDashboard(): void {
+    if (this.isAdmin) {
+      this.router.navigate(['/dashboard']); // Admin should go to the Admin Dashboard
+    } else if (this.isManager || this.isUser) {
+      this.router.navigate(['/dashboard']); // Both manager and user should go to the User Dashboard
     }
   }
 
-  routeToUserDashboard(): void {
-    if (this.isUser || this.isManager) { // Both user and manager will access the user dashboard
-      this.router.navigate(['/dashboard']);
-    } else {
-      alert('Access denied.');
-    }
-  }
 }
-

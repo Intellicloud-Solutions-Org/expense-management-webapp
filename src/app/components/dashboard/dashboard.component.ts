@@ -165,7 +165,7 @@ rejectSelected(): void {
   this.updateSelectedItems(); 
 
   if (this.selectedItems.length === 0) {
-    this.showNoSelectionDialog('No Selection', 'No items selected to approve.');
+    this.showNoSelectionDialog('No Selection', 'No items selected to reject.');
     return;
   }
 
@@ -236,7 +236,7 @@ teamApprovalRequestsData: Array<{ empName: string, expenseType: string, amount: 
       this.teamApprovalRequestsData = data;
     });
   });
-  
+
   this.isAdmin = this.authService.isAdmin();
   this.isManager = this.authService.isManager();
   this.isUser = this.authService.isUser();
