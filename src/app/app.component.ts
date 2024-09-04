@@ -10,6 +10,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
+import { LoginPopupsComponent } from './components/login-popups/login-popups.component';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +27,7 @@ import { LoginComponent } from './login/login.component';
     MatListModule,
     MatButtonModule,
     LoginComponent,
+    LoginPopupsComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

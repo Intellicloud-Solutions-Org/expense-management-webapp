@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {MatListModule} from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
@@ -6,6 +6,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule} from '@angular/common';
 import { Router } from '@angular/router';
+import { AuthService } from '/Angular/expense-management-webapp/src/app/services/auth/auth.service';
 
 
 @Component({
@@ -15,23 +16,39 @@ import { Router } from '@angular/router';
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.css'
 })
-export class SidenavComponent  {
+export class SidenavComponent implements OnInit  {
 
-  constructor(private router: Router) {}
   isExpanded = true; // Default state of sidenav
-  isAdmin = false; // Toggle this based on app's logic
+  isAdmin = false;
+  isManager = false;
+  isUser = false;
+
+  constructor(private router: Router, private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.isAdmin = this.authService.isAdmin();
+    this.isManager = this.authService.isManager();
+    this.isUser = this.authService.isUser();
+  }
 
   toggleSidebar() : void {
     this.isExpanded = !this.isExpanded;
   }
 
-  adminClicked(): void {
-    this.isAdmin = !this.isAdmin;  // Toggle between admin view and default view
-    this.router.navigate(['/admin-dashboard']); // To route to Admin Dashboard
+  routeToAdminDashboard(): void {
+    if (this.isAdmin) {
+      this.router.navigate(['/admin-dashboard']);
+    } else {
+      alert('Access denied. Not an admin.');
+    }
   }
 
-  routeToUserDashboard() : void {
-    this.isAdmin = !this.isAdmin;    // Toggle between admin view and default view
-    this.router.navigate(['/dashboard']); // To route to User Dashboard
+  routeToUserDashboard(): void {
+    if (this.isUser || this.isManager) { // Both user and manager will access the user dashboard
+      this.router.navigate(['/dashboard']);
+    } else {
+      alert('Access denied.');
+    }
   }
 }
+

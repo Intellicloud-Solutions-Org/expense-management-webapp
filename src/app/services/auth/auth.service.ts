@@ -7,28 +7,54 @@ import { Observable, of } from 'rxjs';
 })
 export class AuthService {
 
-  private mockToken: string = 'mock-jwt-token';
+  private tokenKey = 'token';
+  private rolesKey = 'roles';
 
-  login(userName: string, password: string): string | null {
-    
-    const storedUsers = JSON.parse(localStorage.getItem('angular18Local') || '[]');
-    const user = storedUsers.find(
-      (user: any) => user.userName === userName && user.password === password
-    );
+  constructor() {}
 
-    if (user) {
-      return this.mockToken;
+  login(userName: string, password: string): { token: string | null, roles: string[] } {
+    const exampleToken = 'example-jwt-token';
+
+    if (userName === 'admin' && password === 'Admin@123') {
+      return { token: exampleToken, roles: ['Admin'] };
+    } else if (userName === 'manager' && password === 'Manager@123') {
+      return { token: exampleToken, roles: ['Manager'] };
+    } else if (userName === 'user' && password === 'User@123') {
+      return { token: exampleToken, roles: ['User'] };
     } else {
-      return null;
+      return { token: null, roles: [] };
     }
   }
 
-  isAuthenticated(): boolean {
-    const token = localStorage.getItem('token');
-    return !!token;
+  saveSession(token: string, roles: string[]): void {
+    localStorage.setItem(this.tokenKey, token);
+    localStorage.setItem(this.rolesKey, JSON.stringify(roles));
   }
 
-  logout(): void {
-    localStorage.removeItem('token');
+  getToken(): string | null {
+    return localStorage.getItem(this.tokenKey);
+  }
+
+  getRoles(): string[] {
+    const roles = localStorage.getItem(this.rolesKey);
+    return roles ? JSON.parse(roles) : [];
+  }
+
+  isAdmin(): boolean {
+    return this.getRoles().includes('Admin');
+  }
+
+  isManager(): boolean {
+    return this.getRoles().includes('Manager');
+  }
+
+  isUser(): boolean {
+    return this.getRoles().includes('User');
+  }
+
+  // Clear session (useful for logout)
+  clearSession(): void {
+    localStorage.removeItem(this.tokenKey);
+    localStorage.removeItem(this.rolesKey);
   }
 }

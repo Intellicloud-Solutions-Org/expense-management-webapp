@@ -4,12 +4,13 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators, AbstractControl} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../services/auth/auth.service';
+import { LoginPopupsComponent } from '../components/login-popups/login-popups.component';
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule,LoginPopupsComponent ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -28,7 +29,12 @@ export class LoginComponent {
     userName: '',
     password: '',
   };
+
+  showPopup: boolean = false;
+  popupTitle: string = '';
+  popupMessage: string = '';
   router = inject(Router);
+
   authService = inject(AuthService);
 
   constructor() {
@@ -76,19 +82,32 @@ export class LoginComponent {
       localArray.push(this.userRegisterObj);
       localStorage.setItem('angular18Local', JSON.stringify(localArray));
     }
-    alert('Registration Success');
+    this.popupTitle = 'Registration Success';
+    this.popupMessage = 'Registration Successful';
+    this.showPopup = true;
   }
 
   onLogin() {
-    const token = this.authService.login(this.userLogin.userName, this.userLogin.password);
+    const { token, roles } = this.authService.login(this.userLogin.userName, this.userLogin.password);
 
     if (token) {
+      this.authService.saveSession(token, roles);
       
-      localStorage.setItem('token', token);
-      this.router.navigateByUrl('dashboard');
+      if (this.authService.isAdmin()) {
+        this.router.navigateByUrl('/admin-dashboard');
+      } else if (this.authService.isManager()) {
+        this.router.navigateByUrl('/dashboard');
+      } else if (this.authService.isUser()) {
+        this.router.navigateByUrl('/dashboard');
+      }
     } else {
-      alert('User name or password is wrong');
+      this.popupTitle = 'Login Failed';
+      this.popupMessage = 'Username or password is incorrect';
+      this.showPopup = true;
     }
+  }
+  onPopupClose() {
+    this.showPopup = false;
   }
 }
   

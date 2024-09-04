@@ -82,7 +82,6 @@ mat-sidenav * {
 
 .nav-item.list-item-active 
 {
-  
   background-color: cyan !important;
 }
 
@@ -91,14 +90,15 @@ mat-sidenav * {
   color: #209e91  !important; /* Ensure text and icon color change */
 }
 
-
+/*
 .admin-nav-item:hover .nav-icon,
 .admin-nav-item:hover .nav-text {
-  color: white  !important; /* Ensure text and icon color change */
+  color: white  !important; 
  
 }
 
 .admin-nav-item:hover {
-  background-color: #209e91 !important; /* Change background color */
+  background-color: #209e91 !important; 
  
 }
+  */

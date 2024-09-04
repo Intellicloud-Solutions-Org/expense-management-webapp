@@ -16,7 +16,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { initializeExpenseData, initializeUserData } from '../app/app-init';
 import { ExpenseService } from './services/expense.service';
 import { UserService } from '../app/services/user.service';
-
+import { LoginPopupsComponent } from './components/login-popups/login-popups.component';
 
 
 
@@ -40,7 +40,8 @@ import { UserService } from '../app/services/user.service';
     LoginComponent,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    LoginPopupsComponent 
   ],
 
   providers: [

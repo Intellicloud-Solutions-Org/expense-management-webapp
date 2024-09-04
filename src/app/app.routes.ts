@@ -8,6 +8,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { OfficeExpenseManagementComponent } from './components/office-expense-management/office-expense-management.component';
 import { AdminTaskComponent } from './components/admin-task/admin-task.component'
+import { authGuard } from '../app/services/auth/auth.guard';
 
 
 export const routes: Routes = [
@@ -27,6 +28,8 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
+        canActivate: [authGuard],
+        data: { roles: ['User', 'Manager']}
       },
       {
         path: 'expense',
@@ -43,6 +46,8 @@ export const routes: Routes = [
       {
         path: 'admin-dashboard',
         component: AdminDashboardComponent,
+        canActivate: [authGuard],
+        data: { roles: ['Admin']}
       },
       {
         path: 'office-expense',

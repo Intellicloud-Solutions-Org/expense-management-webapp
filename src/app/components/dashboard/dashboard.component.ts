@@ -7,6 +7,7 @@ import { DashboardService } from '../../services/dashboard.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ConfirmdialogComponent } from '../confirmdialog/confirmdialog.component';
+import { AuthService } from '/Angular/expense-management-webapp/src/app/services/auth/auth.service';
 
 
 Chart.register(...registerables)
@@ -94,6 +95,11 @@ export class DashboardComponent implements OnInit {
     }
   }
 };
+
+isAdmin = false;
+isManager = false;
+isUser = false;
+
 
 @ViewChild(ConfirmdialogComponent) dialog!: ConfirmdialogComponent;
 
@@ -187,7 +193,7 @@ teamApprovalRequestsData: Array<{ empName: string, expenseType: string, amount: 
   pendingApprovals: number = 0;
 
 
-  constructor(private dashboardService: DashboardService) {}
+  constructor(private dashboardService: DashboardService, private authService: AuthService) {}
 
   ngOnInit() {
     this.dashboardService.getDashboardData().subscribe(data => {
@@ -230,5 +236,9 @@ teamApprovalRequestsData: Array<{ empName: string, expenseType: string, amount: 
       this.teamApprovalRequestsData = data;
     });
   });
+  
+  this.isAdmin = this.authService.isAdmin();
+  this.isManager = this.authService.isManager();
+  this.isUser = this.authService.isUser();
 }
 }

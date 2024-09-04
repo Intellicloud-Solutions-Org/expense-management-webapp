@@ -15,6 +15,12 @@
     </div>
     <div class="col-md-6 d-flex align-items-center">
       <div class="card-body p-4 p-lg-5">
+        <app-login-popups
+                  *ngIf="showPopup"
+                  [title]="popupTitle"
+                  [message]="popupMessage"
+                  (close)="onPopupClose()">
+                </app-login-popups>
                   <!--Login Form-->
             @if(isLoginView) {
             <form  [formGroup]="userForm">
@@ -214,10 +220,10 @@
               <p class="text-white mb-1 bold-text" (click)="isLoginView = true">
                 Have an account?
               </p>
-            </form>
-            }
+            </form>}
           </div>
         </div>
+        
       </div>
       </div>
       </div>
