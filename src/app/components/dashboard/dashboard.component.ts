@@ -1,10 +1,12 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartData, ChartOptions } from 'chart.js';
 import { Chart, registerables} from 'chart.js';
+import { take } from 'rxjs/operators';
 import { DashboardService } from '../../services/dashboard.service'; 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ConfirmdialogComponent } from '../confirmdialog/confirmdialog.component';
 
 
 Chart.register(...registerables)
@@ -14,7 +16,7 @@ Chart.register(...registerables)
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [BaseChartDirective, CommonModule, FormsModule  ],
+  imports: [BaseChartDirective, CommonModule, FormsModule, ConfirmdialogComponent  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
@@ -93,7 +95,92 @@ export class DashboardComponent implements OnInit {
   }
 };
 
-tableData: Array<{ empName: string, expenseType: string, amount: number, submissionDate: Date, receipt: string, pendingApprovals: number, comments: string, selected: boolean }> = [];
+@ViewChild(ConfirmdialogComponent) dialog!: ConfirmdialogComponent;
+
+currentItem: any;
+selectedItems: any[] = [];
+
+SelectAll(event: any) {
+  const checked = event.target.checked;
+  this.teamApprovalRequestsData.forEach((item) => (item.selected = checked));
+  this.updateSelectedItems();
+}
+updateSelectedItems() {
+  this.selectedItems = this.teamApprovalRequestsData.filter(item => item.selected);
+  console.log('Selected Items:', this.selectedItems); // Debugging statement to check selected items
+}
+
+approveItem(item: any): void {
+
+  if (!item || !item.selected) {
+    this.showNoSelectionDialog('No Selection', 'Please select an item to approve.');
+    return;
+  }
+
+  this.currentItem = item;
+  this.dialog.showConfirmation('Approve Item', `Approved Email has been sent!`);
+  this.dialog.confirmed.pipe(take(1)).subscribe(() => {
+  item.pendingApprovals = Math.max(item.pendingApprovals - 1, 0);
+    console.log('Item approved:', item);
+    });
+}
+
+rejectItem(item: any): void {
+  
+
+  if (!item || !item.selected) {
+    this.showNoSelectionDialog('No Selection', 'Please select an item to reject.');
+    return;
+  }
+
+  this.currentItem = item;
+  this.dialog.showConfirmation('Reject Item', `Reject Email has been sent!`);
+  item.pendingApprovals = Math.max(item.pendingApprovals - 1, 0);
+  this.dialog.confirmed.pipe(take(1)).subscribe(() => {
+    console.log('Item rejected:', item);
+    });
+}
+
+approveSelected(): void {
+  this.updateSelectedItems(); 
+
+  if (this.selectedItems.length === 0) {
+    this.showNoSelectionDialog('No Selection', 'No items selected to approve.');
+    return;
+  }
+
+  this.dialog.showConfirmation('Approve Selected', 'Approved Email has been sent for the selected items!');
+  this.dialog.confirmed.pipe(take(1)).subscribe(() => {
+    console.log('Selected items approved:', this.selectedItems);
+  });
+}
+
+rejectSelected(): void {
+  this.updateSelectedItems(); 
+
+  if (this.selectedItems.length === 0) {
+    this.showNoSelectionDialog('No Selection', 'No items selected to approve.');
+    return;
+  }
+
+  this.dialog.showConfirmation('Reject Selected', 'Reject Email has been sent for the selected items!');
+  this.dialog.confirmed.pipe(take(1)).subscribe(() => {
+    console.log('Selected items rejected:', this.selectedItems);
+    }); 
+}
+
+showNoSelectionDialog(title: string, message: string): void {
+  this.dialog.showConfirmation(title, message);
+
+  this.dialog.confirmed.pipe(take(1)).subscribe(() => {
+    console.log('No selection dialog confirmed');
+  });
+}
+
+tableData: Array<{ empName: string, expenseType: string, amount: number, submissionDate: Date, receipt: string, Approval: string, comments: string, selected: boolean }> = [];
+employeeStatusData: Array<{expenseType: string, amount: number, Approval: string}> = [];
+teamApprovalRequestsData: Array<{ empName: string, expenseType: string, amount: number, submissionDate: Date, receipt: string, comments: string, selected: boolean}> = [];
+
 
   usedBudget: number = 0;
   recentExpenses: number = 0;
@@ -106,7 +193,7 @@ tableData: Array<{ empName: string, expenseType: string, amount: number, submiss
     this.dashboardService.getDashboardData().subscribe(data => {
       this.data1 = data.data1;
       this.data2 = data.data2;
-      this.tableData = data.tableData;
+  
 
       this.usedBudget = 456
       this.recentExpenses = 12345;  
@@ -134,106 +221,14 @@ tableData: Array<{ empName: string, expenseType: string, amount: number, submiss
             break;
         }
       });
-
-      this.dashboardService.getTableData().subscribe(data => {
-        this.tableData = data;
-      });
-    });
-  }
-
-  SelectAll(event: any) {
-    const checked = event.target.checked;
-    this.tableData.forEach(item => item.selected = checked);
-  }
-      approveItem(item: any) {
-        item.pendingApprovals = Math.max(item.pendingApprovals - 1, 0);
-        console.log('Item approved:', item);
-      }
-
-      rejectItem(item: any) {
-        // Simply mark the item as rejected
-        item.pendingApprovals = Math.max(item.pendingApprovals - 1, 0);
-        console.log('Item rejected:', item);
-      }
     
-      approveSelected() {
-        const selectedItems = this.tableData.filter(item => item.selected);
-        selectedItems.forEach(item => this.approveItem(item));
-        
-      }
-      // Method to reject selected items
-      rejectSelected() {
-        const selectedItems = this.tableData.filter(item => item.selected);
-        selectedItems.forEach(item => this.rejectItem(item));
-        
-      }
-    }
-  
+    this.dashboardService.getTableData().subscribe(data => {
+      this.employeeStatusData = data;
+    });
 
-
-
-    /*data2: ChartData<'bar'> = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-    datasets: [
-      {
-        label: 'Travel',
-        data: [100, 950, 500, 105, 450, 950, 260, 560, 100, 950, 105, 150],
-        backgroundColor: '#10c4b5'
-      },
-      {
-        label: 'Team Activities',
-        data: [200, 220, 210, 230, 220, 210, 220, 230, 210, 220, 230, 220],
-        backgroundColor: '#005562'
-      },
-      {
-        label: 'Professional Development',
-        data: [300, 320, 310, 330, 320, 310, 320, 330, 310, 320, 330, 320],
-        backgroundColor: '#0e8174'
-      },
-      {
-        label: 'Bills',
-        data: [150, 160, 170, 180, 170, 160, 170, 180, 170, 160, 170, 180],
-        backgroundColor: '#6eba8c'
-      }
-    ]
-  };
-
-  chartOptions2: ChartOptions<'bar'> = {
-    responsive: true,
-    scales: {
-      x: {
-        stacked: true
-      },
-      y: {
-        stacked: true
-      }
-    },
-    plugins: {
-      legend: {
-        display: true
-      }
-    },
-    layout: {
-      padding: 10
-    }
-  };
-
-      
-
-      data1: ChartData<'doughnut'> = {
-        labels: ['Travel', 'Team Activities', 'Professional Development', 'Bills'],
-        datasets: [{
-          data: [1000, 200, 300, 150],
-          backgroundColor: ['#10c4b5','#005562','#0e8174','#6eba8c'],
-          borderColor: ['#0e8174', '#10c4b5', '#6eba8c', '#005562'],
-          borderWidth: 1
-        }]
-      };
-        chartOptions1: ChartOptions<'doughnut'> = {
-          cutout: '50%',  // Inner size as percentage
-          layout: {
-            padding: 10
-        },
-      }
-  }
-      */
+    this.dashboardService.getRequestTableData().subscribe(data => {
+      this.teamApprovalRequestsData = data;
+    });
+  });
+}
+}

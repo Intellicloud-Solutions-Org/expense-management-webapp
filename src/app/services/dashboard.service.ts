@@ -54,54 +54,69 @@ export class DashboardService {
   }
 
 
-getTableData(): Observable<any[]> {
-  const dummyData = [
-    {
-      empName: 'John Doe',
-      expenseType: ExpenseUtils.getExpenseType('Team activities'),
-      amount:  AmountUtils.formatAmount(1234.56),
-      submissionDate: DateUtils.formatDate(new Date('2024-08-15')),
-      receipt: 'receipt1.pdf',
-      pendingApprovals: "Pending",
-      comments: '',
-      selected: false // Add selected property here
-    },
-    {
-      empName: 'Jane Smith',
-      expenseType: ExpenseUtils.getExpenseType('Bills'),
-      amount: AmountUtils.formatAmount(1234.56),
-      submissionDate: DateUtils.formatDate(new Date('2024-08-16')),
-      receipt: 'receipt2.pdf',
-      pendingApprovals: "Pending",
-      comments: '',
-      selected: false // Add selected property here
-    },
-    {
-      empName: 'Bob Johnson',
-      expenseType: ExpenseUtils.getExpenseType('Travel'),
-      amount: AmountUtils.formatAmount(1234.56),
-      submissionDate: DateUtils.formatDate(new Date('2024-08-17')),
-      receipt: 'receipt3.pdf',
-      pendingApprovals: "Pending",
-      comments: '',
-      selected: false // Add selected property here
-    },
-    {
-      empName: 'Alice Aloy',
-      expenseType: ExpenseUtils.getExpenseType('Professional Development'),
-      amount: AmountUtils.formatAmount(1234.56),
-      submissionDate: DateUtils.formatDate(new Date('2024-08-17')),
-      receipt: 'receipt3.pdf',
-      pendingApprovals: "Pending",
-      comments: '',
-      selected: false // Add selected property here
+  getTableData()
+    : Observable<any> { 
+    const employeeStatusData = [
+      {
+        expenseType: ExpenseUtils.getExpenseType('Professional Development'),
+        amount: AmountUtils.formatAmount(1234.56),
+        Approval: "Pending"
+      },
+      {
+        expenseType: ExpenseUtils.getExpenseType('Bills'),
+        amount: AmountUtils.formatAmount(1234.56),
+        Approval: "Pending"
+      },
+      {
+        expenseType: ExpenseUtils.getExpenseType('Travel'),
+        amount: AmountUtils.formatAmount(1234.56),
+        Approval: "Pending"
+      },
+      {
+        expenseType: ExpenseUtils.getExpenseType('Team Activities') ,
+        amount: AmountUtils.formatAmount(1234.56),
+        Approval: "Pending"
+      }
+    ];
+    return of (employeeStatusData)
+  }
+  
+    getRequestTableData()
+    : Observable<any> { 
+    const teamApprovalRequestsData = [
+      {
+        empName: 'John Doe',
+        expenseType: ExpenseUtils.getExpenseType('Team Activities'),
+        amount: AmountUtils.formatAmount(1234.56),
+        submissionDate: DateUtils.formatDate(new Date('2024-08-17')),
+        receipt: 'receipt1.pdf',
+        comments: '',
+      },
+      {
+        empName: 'Jane Smith',
+        expenseType: ExpenseUtils.getExpenseType('Travel'),
+        amount: AmountUtils.formatAmount(1234.56),
+        submissionDate: DateUtils.formatDate(new Date('2024-08-17')),
+        receipt: 'receipt2.pdf',
+        comments: '',
+      },
+      {
+        empName: 'Bob Johnson',
+        expenseType: ExpenseUtils.getExpenseType('Professional Development'),
+        amount: AmountUtils.formatAmount(1234.56),
+        submissionDate: DateUtils.formatDate(new Date('2024-08-17')),
+        receipt: 'receipt3.pdf',
+        comments: '',
+      },
+      {
+        empName: 'Alice Aloy',
+        expenseType: ExpenseUtils.getExpenseType('Bills'),
+        amount: AmountUtils.formatAmount(1234.56),
+        submissionDate: DateUtils.formatDate(new Date('2024-08-17')),
+        receipt: 'receipt4.pdf',
+        comments: '',
+      }
+    ];
+    return of (teamApprovalRequestsData)
     }
-
-
-
-  ];
-
-  // Simulate HTTP delay and return dummy table data
-  return of(dummyData).pipe(delay(1000));
-}
-}
+  }

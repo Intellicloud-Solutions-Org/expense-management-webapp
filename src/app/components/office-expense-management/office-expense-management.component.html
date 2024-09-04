@@ -38,6 +38,7 @@
                       <button (click)="approve(data)">Approve</button>
                       <button (click)="reject(data)">Reject</button>
                       </div>
+                      <app-confirmdialog></app-confirmdialog>
                     </td>
                     <td>
                       <textarea [(ngModel)]="data.comments" placeholder="Add comment here" style= " height: 40px;"></textarea>

@@ -68,10 +68,10 @@
                 </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let item of tableData">
+            <tr *ngFor="let item of employeeStatusData">
                 <td>{{ item.expenseType }}</td>
                 <td class="amount">{{ item.amount }}</td>
-                <td class="approve">{{ item.pendingApprovals }}</td>
+                <td class="approve">{{ item.Approval }}</td>
               </tr>
             </tbody>
         </table>
@@ -100,7 +100,7 @@
                 </thead>
                 <tbody>
                     
-                <tr *ngFor="let item of tableData">
+                <tr *ngFor="let item of teamApprovalRequestsData">
                     <td>
                         <input type="checkbox" [(ngModel)]="item.selected" />
                       </td>
@@ -117,6 +117,7 @@
                         <button (click)="approveItem(item)">Approve</button>
                         <button (click)="rejectItem(item)">Reject</button>
                         </div>
+                        <app-confirmdialog></app-confirmdialog>
                       </td>
                     <td class="cmt">
                         <textarea [(ngModel)]="item.comments" placeholder="Add comment here" style= " height: 40px;"></textarea>

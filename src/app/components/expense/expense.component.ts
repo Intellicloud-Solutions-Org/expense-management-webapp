@@ -5,7 +5,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { ExpenseService } from '../../services/expense.service';
 
-
+interface EmployeeData {
+  name: string;
+  id: string;
+  designation: string;
+}
 
 @Component({
   selector: 'app-expense',
@@ -22,10 +26,11 @@ export class ExpenseComponent implements OnInit {
 
   public expenseTypes: string[] = []; 
   public defaultDate: string; // Declare defaultDate
+  
+  employeeData: EmployeeData | null = null;
 
-  employeeName: string = '';
-  employeeId: string = '';
-  designation: string = '';
+  
+
 
   constructor(private expenseService: ExpenseService) {
     const today = new Date();
@@ -42,13 +47,9 @@ export class ExpenseComponent implements OnInit {
       this.dataSource = data;
     });
 
-    const employeeData = this.expenseService.getEmployeeData();
-    if (employeeData) {
-      this.employeeName = employeeData.name;
-      this.employeeId = employeeData.id;
-      this.designation = employeeData.designation;
-    }
-  }
+    this.employeeData = this.expenseService.getEmployeeData();
+
+}
 
   public changeTypeaheadLoading(isLoading: boolean): void {
     this.typeaheadLoading = isLoading;

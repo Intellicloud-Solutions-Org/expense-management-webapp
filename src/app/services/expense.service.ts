@@ -3,10 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { ExpenseUtils } from '../shared/utils/expenseType';
 
+interface EmployeeData {
+  name: string;
+  id: string;
+  designation: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class ExpenseService {
+  
 
   private apiUrl = 'api'; // Replace with your API endpoint
 
@@ -20,15 +27,16 @@ export class ExpenseService {
     return this.expenses;
   }
 
-  private employeeData: any;
+  private employeeData: EmployeeData | null = null;
 
-  setEmployeeData(data: any) {
+  setEmployeeData(data: EmployeeData) {
     this.employeeData = data;
   }
 
-  getEmployeeData() {
+  getEmployeeData(): EmployeeData | null {
     return this.employeeData;
   }
+
 
   constructor(private http: HttpClient) {}
   // Simulate HTTP request and return dummy data
