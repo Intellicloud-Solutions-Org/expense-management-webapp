@@ -1,60 +1,64 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { UserRole} from '/Angular/expense-management-webapp/src/app/components/userRole';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private userRoleSubject = new BehaviorSubject<UserRole | null>(null);
+  public userRole$ = this.userRoleSubject.asObservable();
 
-  private tokenKey = 'token';
-  private rolesKey = 'roles';
+   // Simulate login with a hardcoded token and role
+   login(username: string, password: string): Observable<void> {
+    let mockRole: UserRole;
 
-  constructor() {}
-
-  login(userName: string, password: string): { token: string | null, roles: string[] } {
-    const exampleToken = 'example-jwt-token';
-
-    if (userName === 'admin' && password === 'Admin@123') {
-      return { token: exampleToken, roles: ['Admin'] };
-    } else if (userName === 'manager' && password === 'Manager@123') {
-      return { token: exampleToken, roles: ['Manager'] };
-    } else if (userName === 'user' && password === 'User@123') {
-      return { token: exampleToken, roles: ['User'] };
-    } else {
-      return { token: null, roles: [] };
+    switch (username) {
+      case 'admin':
+        mockRole = UserRole.Admin;
+        break;
+      case 'manager':
+        mockRole = UserRole.Manager;
+        break;
+      default:
+        mockRole = UserRole.User;
     }
+
+    const mockToken = 'mock.jwt.token';
+    localStorage.setItem('authToken', mockToken);
+    this.userRoleSubject.next(mockRole);
+    return of();
   }
 
-  saveSession(token: string, roles: string[]): void {
-    localStorage.setItem(this.tokenKey, token);
-    localStorage.setItem(this.rolesKey, JSON.stringify(roles));
+  // Check if the user is authenticated
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('authToken');
   }
 
+  // Get the token from storage
   getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
+    return localStorage.getItem('authToken');
   }
 
-  getRoles(): string[] {
-    const roles = localStorage.getItem(this.rolesKey);
-    return roles ? JSON.parse(roles) : [];
+  logout(): void {
+    localStorage.removeItem('token');  // Remove token or any authentication data
+    this.userRoleSubject.next(null);
   }
 
-  isAdmin(): boolean {
-    return this.getRoles().includes('Admin');
+  // Check if the current user has a certain role
+  hasRole(role: UserRole): boolean {
+    return this.userRoleSubject.value === role;
   }
 
-  isManager(): boolean {
-    return this.getRoles().includes('Manager');
+  // Set user role (simulated for demo)
+  setUserRole(role: string) {
+    localStorage.setItem('userRole', role); // Store role in local storage
   }
 
-  isUser(): boolean {
-    return this.getRoles().includes('User');
+  // Get user role
+  getUserRole(): string | null {
+    return localStorage.getItem('userRole');
   }
 
-  // Clear session (useful for logout)
-  clearSession(): void {
-    localStorage.removeItem(this.tokenKey);
-    localStorage.removeItem(this.rolesKey);
-  }
 }

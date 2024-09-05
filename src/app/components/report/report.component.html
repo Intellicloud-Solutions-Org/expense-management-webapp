@@ -22,7 +22,7 @@
                       <td class="tb-data">
                         <a *ngIf="expense.receipt && !expense.isEditing" [href]="expense.receipt" target="_blank">View</a>
                         <span *ngIf="!expense.receipt && !expense.isEditing">No Receipt</span>
-                        <input *ngIf="expense.isEditing" type="file" (change)="onFileChange($event, expense)" class="file-input" accept=".png,.jpg,.pdf">
+                        <input name ="fileUpload" *ngIf="expense.isEditing" type="file" (change)="onFileChange($event, expense)" class="file-input" accept=".png,.jpg,.pdf">
                       </td>
                       <td class="tb-amt">
                         <span class="amount" *ngIf="!expense.isEditing">{{ expense.amount | number:'1.2-2' }}</span>
@@ -42,22 +42,3 @@
                 </div>
 
 
-
-              <!--
-                <tbody>
-                    <tr *ngFor="let expense of expenses">
-                      <td class="tb-data">{{ expense.empId }}</td>
-                      <td class="tb-data">{{ expense.expenseType }}</td>
-                      <td class="tb-data">
-                        <a *ngIf="expense.receipt" [href]="expense.receipt" target="_blank">View</a>
-                        <span *ngIf="!expense.receipt">No Receipt</span>
-                      </td>
-                      <td class="tb-amt">{{ expense.amount | currency }}</td>
-                      <td class="tb-data">{{ expense.status }}</td>
-                      <td class="tb-icons">
-                        <i class="fas fa-edit action-icon" (click)="editExpense(expense)"></i>
-                        <i class="fas fa-trash-alt action-icon" (click)="deleteExpense(expense.empId)"></i>
-                      </td>
-                    </tr>
-                  </tbody>
-                  -->

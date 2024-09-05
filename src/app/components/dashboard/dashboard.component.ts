@@ -96,9 +96,7 @@ export class DashboardComponent implements OnInit {
   }
 };
 
-isAdmin = false;
-isManager = false;
-isUser = false;
+userRole: string | null = null; // Store user role
 
 
 @ViewChild(ConfirmdialogComponent) dialog!: ConfirmdialogComponent;
@@ -236,9 +234,7 @@ teamApprovalRequestsData: Array<{ empName: string, expenseType: string, amount: 
       this.teamApprovalRequestsData = data;
     });
   });
+  this.userRole = this.authService.getUserRole();
 
-  this.isAdmin = this.authService.isAdmin();
-  this.isManager = this.authService.isManager();
-  this.isUser = this.authService.isUser();
 }
 }

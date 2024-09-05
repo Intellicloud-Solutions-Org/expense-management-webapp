@@ -10,22 +10,22 @@
         <div class="row mt-3">
             <div class="col-md-3 mb-2">
               <div class="form-group">
-                <input type="text" class="form-control" id="companyName" placeholder="Company Name" disabled>
+                <input name="companyName" type="text" class="form-control" id="companyName" [ngModelOptions]="{standalone: true}" [(ngModel)]="companyName" placeholder="Company Name" disabled>
               </div>
             </div>
             <div class="col-md-3 mb-2">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="email" placeholder="Designation" disabled>
+                  <input name="designation" type="text" class="form-control" id="email" [ngModelOptions]="{standalone: true}"  [(ngModel)]="designation" placeholder="Designation" disabled>
                 </div>
               </div>
             <div class="col-md-3 mb-2">
               <div class="form-group">
-                <input type="text" class="form-control" id="userName" placeholder="User Name" disabled>
+                <input name="userName" type="text" class="form-control" id="userName" [(ngModel)]="userName" [ngModelOptions]="{standalone: true}" placeholder="User Name" disabled>
               </div>
             </div>
             <div class="col-md-3 mb-2">
               <div class="form-group">
-                <input type="email" class="form-control" id="email" placeholder="Email Address" disabled>
+                <input name="email" type="email" class="form-control" id="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" placeholder="Email Address" disabled>
               </div>
             </div>
           </div>
@@ -33,12 +33,12 @@
           <div class="row mt-4">
             <div class="col-md-6 mb-2">
               <div class="form-group">
-                <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name">
               </div>
             </div>
             <div class="col-md-6 mb-2">
               <div class="form-group">
-                <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name">
               </div>
             </div>
           </div>
@@ -46,7 +46,7 @@
           <div class="row mt-4">
             <div class="col-md-12 mb-2">
               <div class="form-group">
-                <textarea type="text" class="form-control" id="address" placeholder="Address"></textarea>
+                <textarea type="text" class="form-control" id="address" name="Address" placeholder="Address"></textarea>
               </div>
             </div>
           </div>
@@ -54,17 +54,17 @@
           <div class="row mt-4">
             <div class="col-md-4 mb-2">
               <div class="form-group">
-                <input type="text" class="form-control" id="city" placeholder="City">
+                <input type="text" class="form-control" id="city" name="City" placeholder="City">
               </div>
             </div>
             <div class="col-md-4 mb-2">
               <div class="form-group">
-                <input type="text" class="form-control" id="country" placeholder="Country">
+                <input type="text" class="form-control" id="country" name="country" placeholder="Country">
               </div>
             </div>
             <div class="col-md-4 mb-2">
               <div class="form-group">
-                <input type="text" class="form-control" id="postalCode" placeholder="Postal Code">
+                <input type="text" class="form-control" id="postalCode" name="Pin" placeholder="Postal Code">
               </div>
             </div>
           </div>

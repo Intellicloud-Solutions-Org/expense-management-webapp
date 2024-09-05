@@ -28,34 +28,44 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
-        canActivate: [authGuard],
-        data: { roles: ['User', 'Manager']}
+        canActivate: [authGuard], 
+        data: { roles: ['Admin', 'Manager', 'User'] } 
       },
       {
         path: 'expense',
         component: ExpenseComponent,
+        canActivate: [authGuard], 
+        data: { roles: ['Admin', 'Manager', 'User'] } 
       },
       {
         path: 'report',
         component: ReportComponent,
+        canActivate: [authGuard], 
+        data: { roles: ['Admin', 'Manager', 'User'] } 
       },
       {
         path: 'settings',
         component: SettingsComponent,
+        canActivate: [authGuard], 
+        data: { roles: ['Admin', 'Manager', 'User'] } 
       },
       {
         path: 'admin-dashboard',
         component: AdminDashboardComponent,
-        canActivate: [authGuard],
-        data: { roles: ['Admin']}
+        canActivate: [authGuard], 
+        data: { roles: ['Admin'] } 
       },
       {
         path: 'office-expense',
         component: OfficeExpenseManagementComponent,
+        canActivate: [authGuard], 
+        data: { roles: ['Admin'] }
       },
       {
         path: 'adminTask',
         component: AdminTaskComponent,
+        canActivate: [authGuard], 
+        data: { roles: ['Admin'] }
       }
     ],
   },

@@ -10,16 +10,25 @@
   </p>
 
   
-  <button mat-button >
-    <a routerLinkActive="list-item-active" routerLink="/notify"> 
+  <button mat-button  [matMenuTriggerFor]="menu" >
+    <a > 
       <mat-icon aria-hidden="false" aria-label="Notification bell icon" fontIcon="notifications"></mat-icon>
     </a>
     </button>
-    
+    <mat-menu #menu="matMenu">
+      <ng-container *ngIf="notifications.length > 0; else noNotifications">
+      <button *ngFor="let notification of notifications" mat-menu-item>
+        {{ notification.title }}
+      </button>
+    </ng-container>
+    <ng-template #noNotifications>
+      <button mat-menu-item>No notifications</button>
+    </ng-template>
+    </mat-menu>
     
   <button mat-button >
-    <a routerLinkActive="list-item-active" routerLink="/user">
-      <mat-icon aria-hidden="false" aria-label="User icon" fontIcon="person" ></mat-icon>
+    <a routerLinkActive="list-item-active" (click)="onLogout()">
+      <mat-icon aria-hidden="false" aria-label="User icon" fontIcon="logout" ></mat-icon>
     </a>
     </button>
 </mat-toolbar>

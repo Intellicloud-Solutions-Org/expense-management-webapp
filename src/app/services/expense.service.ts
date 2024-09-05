@@ -17,26 +17,14 @@ export class ExpenseService {
 
   private apiUrl = 'api'; // Replace with your API endpoint
 
-  private expenses: any[] = [];
-
-  setExpenses(expenses: any[]) {
-    this.expenses = expenses;
+  getDummyEmployeeData(): Observable<any> {
+    return of({
+      employeeName: 'John Doe',
+      employeeId: 'E12345',
+      designation: 'Software Engineer'
+    });
   }
-
-  getExpenses() {
-    return this.expenses;
-  }
-
-  private employeeData: EmployeeData | null = null;
-
-  setEmployeeData(data: EmployeeData) {
-    this.employeeData = data;
-  }
-
-  getEmployeeData(): EmployeeData | null {
-    return this.employeeData;
-  }
-
+  
 
   constructor(private http: HttpClient) {}
   // Simulate HTTP request and return dummy data

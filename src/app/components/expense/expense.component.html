@@ -13,14 +13,14 @@
 
                     <!-- Row 2: Employee Details -->
                     <div class="form-row mb-4">
-                        <div  class="col mb-4">
-                            <input type="text" class="form-control" id="employeeName" [value]="employeeData?.name"  placeholder="Employee Name"   >
+                        <div  class="col mb-4"> 
+                            <input type="text" class="form-control" id="employeeName" [(ngModel)] ="employeeName" name="employeeName" [ngModelOptions]="{standalone: true}"  placeholder="Employee Name"  disabled >
                         </div>
                         <div class="col mb-4">
-                            <input type="text" class="form-control" id="employeeId"  placeholder="Employee ID"   disabled>
+                            <input type="text" class="form-control" id="employeeId" [(ngModel)] ="employeeId" name="employeeId" [ngModelOptions]="{standalone: true}" placeholder="Employee ID"   disabled>
                         </div>
                         <div class="col mb-4">
-                            <input type="text" class="form-control" id="designation" [value]="employeeData?.designation"    placeholder="Employee Designation"   disabled>
+                            <input type="text" class="form-control" id="designation" [(ngModel)] ="designation " name="designation" [ngModelOptions]="{standalone: true}" placeholder="Employee Designation"   disabled>
                         </div>
                     </div>
 

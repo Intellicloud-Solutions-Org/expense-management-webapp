@@ -27,8 +27,9 @@ export class ExpenseComponent implements OnInit {
   public expenseTypes: string[] = []; 
   public defaultDate: string; // Declare defaultDate
   
-  employeeData: EmployeeData | null = null;
-
+  employeeName: string = '';
+  employeeId: string = '';
+  designation: string = '';
   
 
 
@@ -46,10 +47,17 @@ export class ExpenseComponent implements OnInit {
     this.expenseService.getManagers().subscribe(data => {
       this.dataSource = data;
     });
-
-    this.employeeData = this.expenseService.getEmployeeData();
-
-}
+    
+    this.initializeFormWithDummyData();
+  }
+    initializeFormWithDummyData() 
+    {
+      this.expenseService.getDummyEmployeeData().subscribe(data => {
+        this.employeeName = data.employeeName;
+        this.employeeId = data.employeeId;
+        this.designation = data.designation;
+      });
+    }
 
   public changeTypeaheadLoading(isLoading: boolean): void {
     this.typeaheadLoading = isLoading;
@@ -59,6 +67,10 @@ export class ExpenseComponent implements OnInit {
     this.typeaheadNoResults = hasNoResults;
   }
 }
+
+  
+
+
 
 
 

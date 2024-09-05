@@ -13,13 +13,28 @@ import { MatButtonModule } from '@angular/material/button';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { initializeExpenseData, initializeUserData } from '../app/app-init';
 import { ExpenseService } from './services/expense.service';
 import { UserService } from '../app/services/user.service';
 import { LoginPopupsComponent } from './components/login-popups/login-popups.component';
 
 
+export function initializeExpense(expenseService: ExpenseService): () => Promise<any> {
+  return () => {
+    return expenseService.getDummyEmployeeData().toPromise().then(data => {
+      // Store the data for later use
+      localStorage.setItem('employeeData', JSON.stringify(data));
+    });
+  };
+}
 
+export function initializeUser(userService: UserService): () => Promise<any> {
+  return () => {
+    return userService.getUserInfo().toPromise().then(data => {
+      // Store the data for later use
+      localStorage.setItem('userInfo', JSON.stringify(data));
+    });
+  };
+}
 
 @NgModule({
   declarations: [],
@@ -44,21 +59,19 @@ import { LoginPopupsComponent } from './components/login-popups/login-popups.com
     LoginPopupsComponent 
   ],
 
-  providers: [
-    ExpenseService,
-    UserService, 
+  providers: [ExpenseService, UserService,
     {
       provide: APP_INITIALIZER,
-      useFactory: initializeExpenseData,
+      useFactory: initializeExpense,
       deps: [ExpenseService],
-      multi: true,
+      multi: true
     },
     {
       provide: APP_INITIALIZER,
-      useFactory: initializeUserData,
+      useFactory: initializeUser,
       deps: [UserService],
-      multi: true,
-    },
+      multi: true // Allows multiple initializers
+    }
   ],
 })
 export class AppModule {}

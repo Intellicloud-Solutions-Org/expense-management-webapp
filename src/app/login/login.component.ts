@@ -4,13 +4,13 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators, AbstractControl} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../services/auth/auth.service';
-import { LoginPopupsComponent } from '../components/login-popups/login-popups.component';
+import {  LoginPopupsComponent } from '../components/login-popups/login-popups.component';
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule,LoginPopupsComponent ],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, LoginPopupsComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -34,6 +34,7 @@ export class LoginComponent {
   popupTitle: string = '';
   popupMessage: string = '';
   router = inject(Router);
+  userRole: string | null = null; // Track the role
 
   authService = inject(AuthService);
 
@@ -71,46 +72,60 @@ export class LoginComponent {
     return null;
   }
 
+  ngOnInit() {
+    // Retrieve the role when the component initializes
+    this.userRole = localStorage.getItem('userRole');
+  }
+
+  // Mock registration
   onRegister() {
-    const isLocalData = localStorage.getItem('angular18Local');
-    if (isLocalData != null) {
-      const localArray = JSON.parse(isLocalData);
-      localArray.push(this.userRegisterObj);
-      localStorage.setItem('angular18Local', JSON.stringify(localArray));
-    } else {
-      const localArray = [];
-      localArray.push(this.userRegisterObj);
-      localStorage.setItem('angular18Local', JSON.stringify(localArray));
-    }
     this.popupTitle = 'Registration Success';
     this.popupMessage = 'Registration Successful';
     this.showPopup = true;
+
+    // Store the user role (for demo purposes)
+    localStorage.setItem('userRole', 'User');
   }
 
+  // Mock login with role-based functionality
   onLogin() {
-    const { token, roles } = this.authService.login(this.userLogin.userName, this.userLogin.password);
+    const formValues = this.userForm.value;
+    
+    // Define dummy users with roles
+    const dummyUsers = [
+      { userName: 'admin', password: 'Admin123!', role: 'Admin' },
+      { userName: 'manager', password: 'Manager123!', role: 'Manager' },
+      { userName: 'user', password: 'User123!', role: 'User' }
+    ];
 
-    if (token) {
-      this.authService.saveSession(token, roles);
-      
-      if (this.authService.isAdmin()) {
-        this.router.navigateByUrl('/admin-dashboard');
-      } else if (this.authService.isManager()) {
-        this.router.navigateByUrl('/dashboard');
-      } else if (this.authService.isUser()) {
-        this.router.navigateByUrl('/dashboard');
-      }
+    // Check if the login details match any of the dummy users
+    const matchedUser = dummyUsers.find(user => 
+      user.userName === formValues.userName && user.password === formValues.password
+    );
+
+    if (matchedUser) {
+      // Store role in local storage to simulate authentication
+      localStorage.setItem('authToken', 'dummy-jwt-token');
+      localStorage.setItem('userRole', matchedUser.role);
+      this.userRole = matchedUser.role;
+      this.authService.setUserRole(matchedUser.role);
+
+      // Redirect to the dashboard or another page
+      this.router.navigate(['/dashboard']);
     } else {
       this.popupTitle = 'Login Failed';
       this.popupMessage = 'Username or password is incorrect';
       this.showPopup = true;
     }
   }
+
   onPopupClose() {
     this.showPopup = false;
   }
 }
-  
+
+
+
 /*
  userForm: FormGroup;
   isFormSubmitted: boolean = false;
@@ -201,4 +216,28 @@ export class LoginComponent {
     }
   }
 }
+
+
+
+onLogin() {
+    const dummyUser = {
+      userName: 'testuser',
+      password: 'Test123!',
+    };
+
+    const formValues = this.userForm.value;
+
+    if (formValues.userName === dummyUser.userName && formValues.password === dummyUser.password) {
+      // Redirect or navigate to another page if needed
+      this.router.navigate(['/dashboard']);
+    } else {
+      this.popupTitle = 'Login Failed';
+      this.popupMessage = 'Username or password is incorrect';
+      this.showPopup = true;
+    }
+  }
+
+  onPopupClose() {
+    this.showPopup = false;
+  }
   */

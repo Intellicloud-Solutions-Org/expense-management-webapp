@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { UserService } from '../../services/user.service';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [MatFormFieldModule],
+  imports: [MatFormFieldModule, CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.css'
 })
@@ -18,12 +21,18 @@ export class SettingsComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    const userData = this.userService.getUserData();
-    this.companyName = userData.companyName;
-    this.designation = userData.designation;
-    this.userName = userData.userName;
-    this.email = userData.email;
-  }
+
+    this.initializeUserData();
+}
+    initializeUserData()
+    {
+      this.userService.getUserInfo().subscribe(data => {
+        this.companyName = data.companyName;
+        this.designation = data.designation;
+        this.userName = data.userName;
+        this.email = data.email;
+      });
+    }
 }
 
 
