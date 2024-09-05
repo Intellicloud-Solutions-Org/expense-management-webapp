@@ -30,8 +30,7 @@ export class AuthService {
     this.userRoleSubject.next(mockRole);
     return of();
   }
-
-  // Check if the user is authenticated
+   // Check if the user is authenticated
   isAuthenticated(): boolean {
     return !!localStorage.getItem('authToken');
   }
@@ -51,7 +50,7 @@ export class AuthService {
     return this.userRoleSubject.value === role;
   }
 
-  // Set user role (simulated for demo)
+  // Set user role (for demo)
   setUserRole(role: string) {
     localStorage.setItem('userRole', role); // Store role in local storage
   }

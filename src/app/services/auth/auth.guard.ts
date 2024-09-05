@@ -16,7 +16,6 @@ export const authGuard: CanActivateFn = (route, state) => {
     return false;
   }
 
-  // Check if the user has one of the expected roles
   if (expectedRoles.includes(userRole)) {
     return true;
   } else {
