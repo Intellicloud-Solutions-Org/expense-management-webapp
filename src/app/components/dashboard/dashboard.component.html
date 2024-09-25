@@ -57,7 +57,7 @@
       </div>
 
       <div class="table-container mt-3">
-    <h5 class="text-center mt-2 text-bold"> Employee Status </h5>
+    <h6 class="text-center mt-2" style="font-style: italic; font-weight:500px; color: #005562"> Employee Status </h6>
     
         <table class="table table-striped table-bordered">
             <thead>
@@ -78,7 +78,7 @@
     </div>
 
     <div class="table-container mt-5" *ngIf="userRole === 'Manager'">
-        <h5 class="text-center mt-2 text-bold"> Team Approval Requests </h5>
+        <h6 class="text-center mt-2" style="font-style: italic; font-weight:500px; color: #005562"> Team Approval Requests </h6>
 
         <div class="select">
             <button class="btn btn-success btn-sm" (click)="approveSelected()">Approve Selected</button>

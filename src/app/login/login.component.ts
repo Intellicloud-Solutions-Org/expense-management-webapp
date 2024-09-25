@@ -95,7 +95,8 @@ export class LoginComponent {
     const dummyUsers = [
       { userName: 'admin', password: 'Admin123!', role: 'Admin' },
       { userName: 'manager', password: 'Manager123!', role: 'Manager' },
-      { userName: 'user', password: 'User123!', role: 'User' }
+      { userName: 'user', password: 'User123!', role: 'User' },
+      { userName: 'kritika', password: 'Kri123!', role: 'User'}
     ];
 
     // Check if the login details match any of the dummy users
@@ -127,7 +128,7 @@ export class LoginComponent {
 
 
 /*
- userForm: FormGroup;
+userForm: FormGroup;
   isFormSubmitted: boolean = false;
 
   constructor() {

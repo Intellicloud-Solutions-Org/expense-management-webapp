@@ -12,7 +12,7 @@ export class UserService {
   getUserInfo(): Observable<any> {
     return of ({
       companyName: 'ABC Corp',
-      designation: 'Manager',
+      designation: 'Software Engineer',
       userName: 'johndoe',
       email: 'johndoe@abc.com'
     }); // Simulating an HTTP call

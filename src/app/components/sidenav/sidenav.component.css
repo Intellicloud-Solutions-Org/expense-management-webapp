@@ -9,8 +9,8 @@ mat-sidenav, mat-sidenav-content {
 
 /* Update mat-sidenav background color and font color */
 mat-sidenav {
-  background-color: #1c2b36 !important; /* Set background color to blue */
-  color: white !important; /* Set font color to white */
+  background-color: #1c2b36 !important; 
+  color: white !important;
   width: 250px !important;
   border-top-right-radius: 0px !important;
 }
@@ -28,20 +28,20 @@ mat-sidenav {
 .nav-item:hover,
 .nav-item:hover mat-icon,
 .nav-item:hover .nav-text {
-  color: #209e91 !important; /* Apply cyan color on hover */
+  color: #209e91 !important;
 }
 
 /* Style for active/selected list item */
 .list-item-active,
 .list-item-active mat-icon,
 .list-item-active .nav-text {
-  color: cyan !important; /* Set selected item color to cyan */
+  color: rgb(24, 143, 143) !important; 
+  font-size: 0.9rem;
 }
 
 .sidenav-content-bg {
-  background-color: #bcbcbe; /* Replace with your desired color */
+  background-color: #bcbcbe; 
 }
-
 
 .admin-nav-item{
   margin-top: 10px;
@@ -91,18 +91,6 @@ mat-sidenav * {
 .admin-nav-item .nav-text {
   color: #209e91  !important; /* Ensure text and icon color change */
   font-family:Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 18px;
+  font-size: 1rem;
 }
 
-/*
-.admin-nav-item:hover .nav-icon,
-.admin-nav-item:hover .nav-text {
-  color: white  !important; 
- 
-}
-
-.admin-nav-item:hover {
-  background-color: #209e91 !important; 
- 
-}
-  */

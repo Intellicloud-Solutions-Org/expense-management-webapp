@@ -7,17 +7,19 @@
 }
 
 .header-top{
-  font-size: 24px; /* Adjust the size as needed */
-  font-weight: bold;
+  font-size: 1.6rem; /* Adjust the size as needed */
+  font-style: oblique;
   color: #808080;
 }
   
 .table th{
-  text-align: center;
+  font-size: 1rem;
+  font-weight: normal;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: #f4f5f7;
   background-color: #0e8174;
-   font-size: 15px;
-}
+  text-align: center;
+ }
   
 .tb-data{
   text-align: left;
@@ -55,7 +57,7 @@
 }
 
 .tb-data1{
-  width: 80px;
+  width: 100px;
   text-align: center;
 }
 

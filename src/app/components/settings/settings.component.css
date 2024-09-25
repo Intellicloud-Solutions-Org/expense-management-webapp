@@ -8,13 +8,13 @@
   
 
   .header-top{
-    font-size: 24px; /* Adjust the size as needed */
-  font-weight: bold;
-  color: #808080;
+    font-size: 1.6rem; /* Adjust the size as needed */
+    font-style: oblique;
+    color: #808080;
   }
 
   .prefix{
-    font-size: 12px;
+    font-size: 1rem;
     color: #808080;
   }
   

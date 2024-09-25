@@ -4,7 +4,7 @@
 
   .transparent-padding {
     display: flex;
-    padding-top: 20px; /* Adjust padding as needed */
+    padding-top: 20px; 
     background-color: transparent;
     margin: 10px;
   }
@@ -20,12 +20,13 @@
     color: #209e91;
 }
 
-.example-icon{
-    color: aliceblue;
-}
-.mat-icon{
+.mat-icon {
     color: aliceblue !important;
-    
+    transition: color 0.3s ease; /* Smooth transition effect */
+}
+
+.mat-icon:hover {
+    color: #109682 !important; /* Change to any color, e.g., tomato */
 }
 
 .searchInput {
