@@ -15,7 +15,7 @@ interface EmployeeData {
 export class ExpenseService {
   
 
-  private apiUrl = 'api'; // Replace with your API endpoint
+  private apiUrl = 'api'; 
 
   getDummyEmployeeData(): Observable<any> {
     return of({
@@ -27,7 +27,7 @@ export class ExpenseService {
   
 
   constructor(private http: HttpClient) {}
-  // Simulate HTTP request and return dummy data
+  
 
   getExpenseType(): Observable<string[]> {
     return of(ExpenseUtils.expenseTypes);

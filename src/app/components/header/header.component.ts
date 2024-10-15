@@ -8,9 +8,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatDividerModule} from '@angular/material/divider';
-import { AuthService } from '/Angular/expense-management-webapp/src/app/services/auth/auth.service';
+import { AuthService } from '/Project/expense-management-webapp/src/app/services/auth/auth.service';
 import { CommonModule } from '@angular/common';
-import { NotifyService } from '/Angular/expense-management-webapp/src/app/services/notify.service';
+import { NotifyService } from '/Project/expense-management-webapp/src/app/services/notify.service';
 
 @Component({
   selector: 'app-header',

@@ -7,7 +7,7 @@
   }
 
   .header-top{
-    font-size: 1.6rem; /* Adjust the size as needed */
+    font-size: 1.6rem; 
     font-style: oblique;
     color: #808080;
   }
@@ -40,7 +40,7 @@
 
   .card-icon {
     font-size: 2rem;
-    color: #f7f8f9; /* Or your preferred color */
+    color: #f7f8f9; 
     border: 0px solid #2d4452;
     padding: 10px;
     display: inline-block;

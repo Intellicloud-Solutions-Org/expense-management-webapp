@@ -7,7 +7,7 @@ import { of, Observable } from 'rxjs';
 export class UserService {
 
   
-  private apiUrl = 'api'; // Replace with your API endpoint
+  private apiUrl = 'api'; 
 
   getUserInfo(): Observable<any> {
     return of ({
@@ -15,7 +15,7 @@ export class UserService {
       designation: 'Software Engineer',
       userName: 'johndoe',
       email: 'johndoe@abc.com'
-    }); // Simulating an HTTP call
+    }); 
 }
   }
 

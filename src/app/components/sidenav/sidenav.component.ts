@@ -6,7 +6,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule} from '@angular/common';
 import { Router } from '@angular/router';
-import { AuthService } from '/Angular/expense-management-webapp/src/app/services/auth/auth.service';
+import { AuthService } from '/Project/expense-management-webapp/src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -17,14 +17,14 @@ import { AuthService } from '/Angular/expense-management-webapp/src/app/services
 })
 export class SidenavComponent  {
 
-  isExpanded = true; // Default state of sidenav
+  isExpanded = true; 
   userRole: string | null = null; // Store user role
   
 
   constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
-    // Retrieve the role from the AuthService or localStorage
+    
     this.userRole = this.authService.getUserRole();
   }
   

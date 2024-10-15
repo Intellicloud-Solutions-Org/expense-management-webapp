@@ -7,7 +7,6 @@ export class ExpenseUtils {
       'Professional Development'
     ];
   
-    // Method to get the normalized expense type
     static getExpenseType(type: string): string | undefined {
       const normalizedType = type
         .toLowerCase()

@@ -11,11 +11,11 @@ import { AmountUtils } from '../shared/utils/Amount';
 })
 export class DashboardService {
 
-  private apiUrl = 'rest-url'; // Replace with your API endpoint
+  private apiUrl = 'api'; 
 
   constructor(private http: HttpClient) { }
 
-  // Simulate HTTP request and return dummy data
+
   
   getDashboardData(): Observable<any> {
   
@@ -49,7 +49,7 @@ export class DashboardService {
       },
   };
 
-    // Simulate HTTP delay and return dummy data
+   
     return of(dummyData).pipe(delay(1000));
   }
 

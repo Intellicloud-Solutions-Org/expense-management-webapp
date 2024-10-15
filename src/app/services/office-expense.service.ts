@@ -29,7 +29,6 @@ export class OfficeExpenseService {
       { empName: 'Aman', submissionDate: DateUtils.formatDate(new Date('2024-08-15')), expenseType: ExpenseUtils.getExpenseType('Bills'), amount: AmountUtils.formatAmount(1234.56), receipt: 'No Receipt', approvalStatus: 'Pending', comments: '' },
       { empName: 'Aman', submissionDate: DateUtils.formatDate(new Date('2024-08-15')), expenseType: ExpenseUtils.getExpenseType('Bills'), amount: AmountUtils.formatAmount(1234.56), receipt: 'No Receipt', approvalStatus: 'Pending', comments: '' },
       
-      // Add more items here
     ];
     return of(data);
   }

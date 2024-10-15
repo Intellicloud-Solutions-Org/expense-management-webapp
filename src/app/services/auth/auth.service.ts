@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { UserRole} from '/Angular/expense-management-webapp/src/app/components/userRole';
+import { UserRole} from '/Project/expense-management-webapp/src/app/components/userRole';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class AuthService {
   private userRoleSubject = new BehaviorSubject<UserRole | null>(null);
   public userRole$ = this.userRoleSubject.asObservable();
 
-   // Simulate login with a hardcoded token and role
+ 
    login(username: string, password: string): Observable<void> {
     let mockRole: UserRole;
 
@@ -30,7 +30,7 @@ export class AuthService {
     this.userRoleSubject.next(mockRole);
     return of();
   }
-   // Check if the user is authenticated
+   
   isAuthenticated(): boolean {
     return !!localStorage.getItem('authToken');
   }
@@ -41,23 +41,22 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem('token');  // Remove token or any authentication data
+    localStorage.removeItem('token');  
     this.userRoleSubject.next(null);
   }
 
-  // Check if the current user has a certain role
+  
   hasRole(role: UserRole): boolean {
     return this.userRoleSubject.value === role;
   }
 
-  // Set user role (for demo)
+
   setUserRole(role: string) {
     localStorage.setItem('userRole', role); // Store role in local storage
   }
 
-  // Get user role
+ 
   getUserRole(): string | null {
     return localStorage.getItem('userRole');
   }
-
 }

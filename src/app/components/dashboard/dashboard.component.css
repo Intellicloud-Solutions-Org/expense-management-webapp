@@ -7,7 +7,7 @@
   }
 
   .header-top{
-    font-size: 1.6rem; /* Adjust the size as needed */
+    font-size: 1.6rem; 
     font-style: oblique;
     color: #808080;
   }
@@ -42,7 +42,7 @@
 
   .card-icon {
     font-size: 2rem;
-    color: #f7f8f9; /* Or your preferred color */
+    color: #f7f8f9; 
     border: 0px solid #2d4452;
     padding: 10px;
     display: inline-block;
@@ -115,8 +115,8 @@
     }
 
     .custom-thead {
-      background-color: #4CAF50; /* Replace with your desired color */
-      color: white; /* Text color */
+      background-color: #4CAF50; 
+      color: white; 
   }
 
   table td button {
@@ -132,15 +132,15 @@
   .buttons-container {
     display: flex;
     justify-content: center;
-    gap: 10px; /* Space between buttons */
+    gap: 10px;
   }
   
   table td button:nth-child(1) {
-    background-color: #28a745; /* Green for Approve */
+    background-color: #28a745; 
   }
   
   table td button:nth-child(2) {
-    background-color: #dc3545; /* Red for Reject */
+    background-color: #dc3545; 
   }
   
   table td button:hover {
@@ -162,15 +162,15 @@
   table td textarea {
     width: 100%;
   padding: 5px;
-  border: 1px solid #ddd; /* Optional: Add a light border */
+  border: 1px solid #ddd; 
   border-radius: 4px;
-  background-color: transparent; /* Make the background transparent */
+  background-color: transparent; 
   box-sizing: border-box;
   color: #000; 
   }
 
   .select{
     display: flex;
-    gap: 10px; /* Space between buttons */
+    gap: 10px; 
     margin-bottom: 15px;
   }

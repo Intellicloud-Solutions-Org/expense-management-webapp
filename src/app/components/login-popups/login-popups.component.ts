@@ -7,6 +7,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   templateUrl: './login-popups.component.html',
   styleUrl: './login-popups.component.css'
 })
+
 export class LoginPopupsComponent {
 
   @Input() title: string = '';
@@ -16,5 +17,4 @@ export class LoginPopupsComponent {
   onClose(): void {
     this.close.emit();
   }
-
 }

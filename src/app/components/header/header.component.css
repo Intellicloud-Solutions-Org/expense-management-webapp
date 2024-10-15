@@ -10,8 +10,8 @@
   }
 
   .custom-toolbar {
-    background-color: #1c2b36; /* Change this to your desired color */
-    color: rgb(8, 6, 6); /* This changes the text color */
+    background-color: #1c2b36; 
+    color: rgb(8, 6, 6); 
 }
 .name{
     color: white;
@@ -22,11 +22,11 @@
 
 .mat-icon {
     color: aliceblue !important;
-    transition: color 0.3s ease; /* Smooth transition effect */
+    transition: color 0.3s ease; 
 }
 
 .mat-icon:hover {
-    color: #109682 !important; /* Change to any color, e.g., tomato */
+    color: #109682 !important; 
 }
 
 .searchInput {
@@ -41,6 +41,7 @@
     caret-color: white;
     color: white;
 }
+
 a{
     margin-right: -10px;
 }

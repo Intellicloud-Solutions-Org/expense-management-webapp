@@ -23,8 +23,8 @@ export class AdminDashboardComponent implements OnInit {
       data: [],
       label: '',
       fill: true,
-      backgroundColor: "#10c4b5", // Set color directly
-      borderColor: "#0e8174" // Set color directly
+      backgroundColor: "#10c4b5", 
+      borderColor: "#0e8174" 
     }]
   };
   lineChartOptions: ChartOptions<'line'> = {
@@ -38,7 +38,7 @@ export class AdminDashboardComponent implements OnInit {
         position: 'top',
         labels: {
           font: {
-            size: 12 // Labels Font Size
+            size: 12 
           }
         }
       },

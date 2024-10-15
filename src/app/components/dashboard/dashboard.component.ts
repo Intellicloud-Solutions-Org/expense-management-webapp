@@ -7,7 +7,7 @@ import { DashboardService } from '../../services/dashboard.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ConfirmdialogComponent } from '../confirmdialog/confirmdialog.component';
-import { AuthService } from '/Angular/expense-management-webapp/src/app/services/auth/auth.service';
+import { AuthService } from '/Project/expense-management-webapp/src/app/services/auth/auth.service';
 
 
 Chart.register(...registerables)
