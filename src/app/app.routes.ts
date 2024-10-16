@@ -9,6 +9,7 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { OfficeExpenseManagementComponent } from './components/office-expense-management/office-expense-management.component';
 import { AdminTaskComponent } from './components/admin-task/admin-task.component'
 import { authGuard } from '../app/services/auth/auth.guard';
+import { RegisterComponent} from '../app/register/register.component'
 
 
 export const routes: Routes = [
@@ -20,6 +21,11 @@ export const routes: Routes = [
   {
     path: 'login', 
     component: LoginComponent,
+  },
+
+  {
+    path: 'register', 
+    component: RegisterComponent,
   },
   {
     path: '',
