@@ -52,9 +52,37 @@
         formControlName="userName"
       />
       <div  class="text-danger" *ngIf="registerForm.get('userName')?.invalid && registerForm.get('userName')?.touched">
-        Username is required and must be less than 8 characters.
+        Username is required
       </div>
     </div>
+
+    <div data-mdb-input-init class="form-outline mb-3">
+        <input
+          placeholder="First Name"
+          name="firstName"
+          type="text"
+          id="firstName"
+          class="form-control form-control-lg inputName"
+          formControlName="firstName"
+        />
+        <div  class="text-danger" *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched">
+          FirstName is required 
+        </div>
+      </div>
+
+      <div data-mdb-input-init class="form-outline mb-3">
+        <input
+          placeholder="Last Name"
+          name="lastName"
+          type="text"
+          id="lastName"
+          class="form-control form-control-lg inputName"
+          formControlName="lastName"
+        />
+        <div  class="text-danger" *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched">
+          Lastname is required
+        </div>
+      </div>
 
     <div data-mdb-input-init class="form-outline mb-3">
       <input
@@ -65,10 +93,22 @@
         class="form-control form-control-lg inputName"
         formControlName="companyName" />
         <div  class="text-danger" *ngIf="registerForm.get('companyName')?.invalid && registerForm.get('companyName')?.touched">
-            Company name is required.
+            Company name is required
           </div>
-      
         </div>
+
+        <div data-mdb-input-init class="form-outline mb-3">
+            <input
+              placeholder="Designation"
+              name="designation"
+              type="text"
+              id="designation"
+              class="form-control form-control-lg inputName"
+              formControlName="designation" />
+              <div  class="text-danger" *ngIf="registerForm.get('designation')?.invalid && registerForm.get('designation')?.touched">
+                Designation is required
+                </div>
+              </div>
 
     <div data-mdb-input-init class="form-outline mb-3">
       <input
@@ -79,7 +119,7 @@
         class="form-control form-control-lg inputName"
         formControlName="password" />
         <div  class="text-danger" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
-            Password must be 6-20 characters long and include uppercase, lowercase, numeric, and special characters.
+            Password required
           </div>
 
     </div>

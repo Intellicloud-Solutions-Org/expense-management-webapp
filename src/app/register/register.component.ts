@@ -35,14 +35,12 @@ export class RegisterComponent {
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.registerForm = this.fb.group({
       userName: ['', [Validators.required, Validators.maxLength(8)]],
+      firstName: ['', [Validators.required, Validators.maxLength(10)]],
+      lastName: ['', [Validators.required, Validators.maxLength(10)]],
       companyName: ['', Validators.required],
       emailId: ['', [Validators.required, Validators.email]],
-      password: ['', [
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(20),
-        this.passwordStrengthValidator
-      ]],
+      designation: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6),Validators.maxLength(20),this.passwordStrengthValidator ]]
     });
   }
 
