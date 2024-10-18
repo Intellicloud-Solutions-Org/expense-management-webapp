@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../services/auth/auth.service';
 import {  LoginPopupsComponent } from '../components/login-popups/login-popups.component';
 import { RouterModule } from '@angular/router'; 
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class RegisterComponent {
 
   //authService = inject(AuthService);
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService , private route : Router) {
     this.registerForm = this.fb.group({
       username: ['', [Validators.required, Validators.maxLength(8)]],
       email: ['', [Validators.required, Validators.email]],
@@ -67,8 +68,7 @@ export class RegisterComponent {
           this.popupTitle = 'Registration Success';
           this.popupMessage = 'Registration Successful';
           this.showPopup = true;
-          // Optionally navigate to another route after registration
-          // this.router.navigate(['/login']);
+          //this.route.navigate(['login']);
         },
         error:(error) => {
           this.popupTitle = 'Registration Failed';
@@ -81,5 +81,6 @@ export class RegisterComponent {
 
   onPopupClose() {
     this.showPopup = false;
+    this.route.navigate(['login']);
   }
 }

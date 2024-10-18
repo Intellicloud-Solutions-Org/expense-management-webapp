@@ -49,11 +49,12 @@ export class LoginComponent {
     this.authService.login(username, password).subscribe({
       next: (response) => {
         console.log('Login response:', response);
-        const token = response.token;
+        const token = response.data.token;
         if (token) {
           this.authService.saveToken(token);
           console.log('Token saved:', this.authService.getToken()); 
-          this.router.navigate(['/dashboard']); 
+          console.log('Navigating to dashboard...');
+          this.router.navigate(['dashboard']); 
         } else {
           this.showPopup = true;
           this.popupTitle = 'Login Failed';
@@ -68,13 +69,10 @@ export class LoginComponent {
     });
   }
 
+
    onPopupClose() {
     this.showPopup = false;
   }
 }
 
 
-//logout() {
-  //localStorage.removeItem('jwtToken');
-  //this.router.navigate(['/login']);  // Optional: Redirect user to login page
-//}

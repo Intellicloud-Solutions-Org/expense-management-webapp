@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: AuthService, private notifyService: NotifyService, private router: Router) { }
 
   onLogout(): void {
+    localStorage.removeItem('jwtToken');
     this.router.navigate(['/login']); 
   }
   

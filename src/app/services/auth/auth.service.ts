@@ -11,7 +11,7 @@ export class AuthService {
 
   private baseUrl = 'http://localhost:8080/user';
 
-  private apiUrl = 'http://localhost:8080/genrate'; 
+  private apiUrl = 'http://localhost:8080/login'; 
 
   constructor(private http: HttpClient) {}
 
@@ -33,9 +33,5 @@ export class AuthService {
 
   getToken(): string | null {
     return localStorage.getItem('jwtToken');
-  }
-
-  logout() {
-    localStorage.removeItem('jwtToken');
   }
 }
