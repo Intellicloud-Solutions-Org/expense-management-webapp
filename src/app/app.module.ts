@@ -16,6 +16,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ExpenseService } from './services/expense.service';
 import { UserService } from '../app/services/user.service';
 import { LoginPopupsComponent } from './components/login-popups/login-popups.component';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { jwtInterceptor } from '../app/services/auth/jwt.interceptor';
 
 
 export function initializeExpense(expenseService: ExpenseService): () => Promise<any> {
@@ -71,7 +73,8 @@ export function initializeUser(userService: UserService): () => Promise<any> {
       useFactory: initializeUser,
       deps: [UserService],
       multi: true // Allows multiple initializers
-    }
+    },
+    provideHttpClient(withInterceptors([jwtInterceptor]))
   ],
 })
 export class AppModule {}

@@ -1,17 +1,22 @@
 <section class="vh-100">
+     <!-- Top gradient section -->
     <div class="p-5" style="background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);height: 200px;"></div>
-  <div class="card mx-5 mx-md-4 shadow-5-strong bg-body-tertiary" style="
-  margin-top: -130px;
-  backdrop-filter: blur(30px);
-  background-image: linear-gradient(to top, #233246 0%, #2f4558 100%);
-  ">
+
+    <!-- Card section -->
+  <div class="card mx-5 mx-md-4 shadow-5-strong bg-body-tertiary" style="margin-top: -130px; backdrop-filter: blur(30px); background-image: linear-gradient(to top, #233246 0%, #2f4558 100%);">
 <div class="container py-5 h-100">
 <div class="row d-flex justify-content-center align-items-center h-100">
 <div class="col-xl-10">
   <div class="row g-0">
+
+    <!-- Image Section -->
     <div class="col-md-6 d-none d-md-block">
-      <img src="https://img.freepik.com/premium-vector/cartoon-girl-analyzes-her-spending-graph-laptop-people-planning-budget-process-analyzing-personal-corporate-budget-accounting-calculation-financial-income-vector_776652-3627.jpg" alt="login form" class="img-fluid h-100" style="border-radius: 1rem 1rem 1rem 1rem; object-fit: cover;" />
+        <div style="height: 700px; overflow: hidden;">
+      <img src="https://img.freepik.com/premium-vector/cartoon-girl-analyzes-her-spending-graph-laptop-people-planning-budget-process-analyzing-personal-corporate-budget-accounting-calculation-financial-income-vector_776652-3627.jpg" alt="login form" class="img-fluid" style="border-radius: 1rem; object-fit: cover; width: 100%; height: 100%;"/>
+      </div>
     </div>
+
+    <!-- Form Section -->
     <div class="col-md-6 d-flex align-items-center">
       <div class="card-body p-4 p-lg-5">
         <app-login-popups
@@ -30,14 +35,14 @@
     <div data-mdb-input-init class="form-outline mb-3">
       <input
         placeholder="Email"
-        name="emailId"
+        name="email"
         type="email"
         id="emailInput"
         class="form-control form-control-lg inputName"
-        formControlName="emailId"
+        formControlName="email"
       />
 
-      <div  class="text-danger" *ngIf="registerForm.get('emailId')?.invalid && registerForm.get('emailId')?.touched">
+      <div  class="text-danger" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
         Please enter a valid email address.
       </div>
     </div>
@@ -45,13 +50,12 @@
     <div data-mdb-input-init class="form-outline mb-3">
       <input
         placeholder="User Name"
-        name="userName"
+        name="username"
         type="text"
         id="userName"
         class="form-control form-control-lg inputName"
-        formControlName="userName"
-      />
-      <div  class="text-danger" *ngIf="registerForm.get('userName')?.invalid && registerForm.get('userName')?.touched">
+        formControlName="username"/>
+      <div  class="text-danger" *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
         Username is required
       </div>
     </div>

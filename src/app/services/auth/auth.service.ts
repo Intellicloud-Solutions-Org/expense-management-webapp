@@ -1,62 +1,41 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,  HttpHeaders  } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { UserRole} from '/Project/expense-management-webapp/src/app/components/userRole';
+//import { UserRole} from '/Project/expense-management-webapp/src/app/components/userRole';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private userRoleSubject = new BehaviorSubject<UserRole | null>(null);
-  public userRole$ = this.userRoleSubject.asObservable();
 
- 
-   login(username: string, password: string): Observable<void> {
-    let mockRole: UserRole;
 
-    switch (username) {
-      case 'admin':
-        mockRole = UserRole.Admin;
-        break;
-      case 'manager':
-        mockRole = UserRole.Manager;
-        break;
-      default:
-        mockRole = UserRole.User;
-    }
+  private baseUrl = 'http://localhost:8080/user';
 
-    const mockToken = 'mock.jwt.token';
-    localStorage.setItem('authToken', mockToken);
-    this.userRoleSubject.next(mockRole);
-    return of();
-  }
-   
-  isAuthenticated(): boolean {
-    return !!localStorage.getItem('authToken');
+  private apiUrl = 'http://localhost:8080/genrate'; 
+
+  constructor(private http: HttpClient) {}
+
+  register(userData: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/register`, userData);
   }
 
-  // Get the token from storage
+  login(username: string, password: string): Observable<any> {
+    const body = { username, password };
+    return this.http.post<any>(this.apiUrl, body, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    });
+  }
+  saveToken(token: string) {
+    localStorage.setItem('jwtToken', token);
+  }
+
   getToken(): string | null {
-    return localStorage.getItem('authToken');
+    return localStorage.getItem('jwtToken');
   }
 
-  logout(): void {
-    localStorage.removeItem('token');  
-    this.userRoleSubject.next(null);
-  }
-
-  
-  hasRole(role: UserRole): boolean {
-    return this.userRoleSubject.value === role;
-  }
-
-
-  setUserRole(role: string) {
-    localStorage.setItem('userRole', role); // Store role in local storage
-  }
-
- 
-  getUserRole(): string | null {
-    return localStorage.getItem('userRole');
+  logout() {
+    localStorage.removeItem('jwtToken');
   }
 }

@@ -22,52 +22,59 @@ export class LoginComponent {
   showPopup: boolean = false;
   popupTitle: string = '';
   popupMessage: string = '';
-  router = inject(Router);
-  userRole: string | null = null; // role
+ router = inject(Router);
+ //userRole: string | null = null; 
 
-  //authService = inject(AuthService);
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
       this.loginForm = this.fb.group({
-        userName: ['', Validators.required],
+        username: ['', Validators.required],
         password: ['', Validators.required],
       });
     }
-  ngOnInit() {
-    this.userRole = localStorage.getItem('userRole');
-  }
+
+    //ngOnInit() {
+     // this.userRole = localStorage.getItem('userRole');
+   // }
 
   onLogin() {
-    const formValues = this.loginForm.value;
-    
-  
-    const dummyUsers = [
-      { userName: 'admin', password: 'Admin123!', role: 'Admin' },
-      { userName: 'manager', password: 'Manager123!', role: 'Manager' },
-      { userName: 'user', password: 'User123!', role: 'User' },
-      { userName: 'kritika', password: 'Kri123!', role: 'User'}
-    ];
-
-    const matchedUser = dummyUsers.find(user => 
-      user.userName === formValues.userName && user.password === formValues.password
-    );
-
-    if (matchedUser) {
-      
-      localStorage.setItem('authToken', 'dummy-jwt-token');
-      localStorage.setItem('userRole', matchedUser.role);
-      this.userRole = matchedUser.role;
-      this.authService.setUserRole(matchedUser.role);
-
-      this.router.navigate(['/dashboard']);
-    } else {
-      this.popupTitle = 'Login Failed';
-      this.popupMessage = 'Username or password is incorrect';
+    if (this.loginForm.invalid) {
       this.showPopup = true;
+      this.popupTitle = 'Error';
+      this.popupMessage = 'Please fill in all fields';
+      return;
     }
+
+    const { username, password } = this.loginForm.value;
+    this.authService.login(username, password).subscribe({
+      next: (response) => {
+        console.log('Login response:', response);
+        const token = response.token;
+        if (token) {
+          this.authService.saveToken(token);
+          console.log('Token saved:', this.authService.getToken()); 
+          this.router.navigate(['/dashboard']); 
+        } else {
+          this.showPopup = true;
+          this.popupTitle = 'Login Failed';
+          this.popupMessage = 'No token received';
+        }
+      },
+      error: (err) => {
+        this.showPopup = true;
+        this.popupTitle = 'Login Failed';
+        this.popupMessage = 'Invalid username or password';
+      },
+    });
   }
 
-  onPopupClose() {
+   onPopupClose() {
     this.showPopup = false;
   }
 }
+
+
+//logout() {
+  //localStorage.removeItem('jwtToken');
+  //this.router.navigate(['/login']);  // Optional: Redirect user to login page
+//}

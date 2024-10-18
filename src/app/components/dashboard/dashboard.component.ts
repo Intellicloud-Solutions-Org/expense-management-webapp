@@ -234,7 +234,6 @@ teamApprovalRequestsData: Array<{ empName: string, expenseType: string, amount: 
       this.teamApprovalRequestsData = data;
     });
   });
-  this.userRole = this.authService.getUserRole();
 
 }
 }

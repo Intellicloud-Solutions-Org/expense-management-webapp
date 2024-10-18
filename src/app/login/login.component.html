@@ -28,14 +28,14 @@
               </h3>
               <div data-mdb-input-init class="form-outline mb-4">
                 <input
-                  placeholder="Username" 
-                  name="userName"
+                  placeholder="User Name" 
+                  name="username"
                   type="text"
-                  id="userName"
+                  id="username"
                   class="form-control form-control-lg inputName"
-                  formControlName="userName"
+                  formControlName="username"
                 />
-                <div  class="text-danger" *ngIf="loginForm.get('userName')?.invalid && loginForm.get('userName')?.touched">
+                <div  class="text-danger" *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
                   Username is required.
                 </div>
               </div>
@@ -50,7 +50,7 @@
                   formControlName="password"
                 />
                 <div  class="text-danger" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-                  Password must be 6-20 characters long and include uppercase, lowercase, numeric, and special characters.
+                  Password is must 
                 </div>
               </div>
               <!--Login Button-->

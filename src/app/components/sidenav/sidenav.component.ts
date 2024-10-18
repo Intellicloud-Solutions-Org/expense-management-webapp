@@ -25,7 +25,6 @@ export class SidenavComponent  {
 
   ngOnInit(): void {
     
-    this.userRole = this.authService.getUserRole();
   }
   
   toggleSidebar() : void {

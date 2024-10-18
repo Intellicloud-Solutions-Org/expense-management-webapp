@@ -7,7 +7,8 @@ import { of, Observable } from 'rxjs';
 export class UserService {
 
   
-  private apiUrl = 'api'; 
+  private apiUrl = 'http://localhost:8080'; 
+
 
   getUserInfo(): Observable<any> {
     return of ({

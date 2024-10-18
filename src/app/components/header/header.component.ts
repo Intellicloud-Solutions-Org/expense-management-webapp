@@ -25,7 +25,6 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: AuthService, private notifyService: NotifyService, private router: Router) { }
 
   onLogout(): void {
-    this.authService.logout();  
     this.router.navigate(['/login']); 
   }
   

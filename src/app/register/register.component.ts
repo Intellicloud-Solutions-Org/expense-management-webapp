@@ -18,13 +18,6 @@ export class RegisterComponent {
 
   registerForm: FormGroup;
 
- // userRegisterObj: any = {
-   // userName: '',
-    //password: '',
-   // emailId: '',
-  //  companyname: '',
- // };
-
   showPopup: boolean = false;
   popupTitle: string = '';
   popupMessage: string = '';
@@ -34,11 +27,11 @@ export class RegisterComponent {
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.registerForm = this.fb.group({
-      userName: ['', [Validators.required, Validators.maxLength(8)]],
+      username: ['', [Validators.required, Validators.maxLength(8)]],
+      email: ['', [Validators.required, Validators.email]],
       firstName: ['', [Validators.required, Validators.maxLength(10)]],
       lastName: ['', [Validators.required, Validators.maxLength(10)]],
       companyName: ['', Validators.required],
-      emailId: ['', [Validators.required, Validators.email]],
       designation: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6),Validators.maxLength(20),this.passwordStrengthValidator ]]
     });
@@ -60,20 +53,30 @@ export class RegisterComponent {
     return null;
   }
 
-
-
   ngOnInit() {
     this.userRole = localStorage.getItem('userRole');
   }
 
   // Mock registration
   onRegister() {
-    this.popupTitle = 'Registration Success';
-    this.popupMessage = 'Registration Successful';
-    this.showPopup = true;
+    if (this.registerForm.valid) {
+      const formData = this.registerForm.value;
 
-    // Store the user role (for demo purposes)
-    localStorage.setItem('userRole', 'User');
+      this.authService.register(formData).subscribe({
+        next:(response) => {
+          this.popupTitle = 'Registration Success';
+          this.popupMessage = 'Registration Successful';
+          this.showPopup = true;
+          // Optionally navigate to another route after registration
+          // this.router.navigate(['/login']);
+        },
+        error:(error) => {
+          this.popupTitle = 'Registration Failed';
+          this.popupMessage = 'There was an error during registration. Please try again.';
+          this.showPopup = true;
+        }
+    });
+    }
   }
 
   onPopupClose() {
