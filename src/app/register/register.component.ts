@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../services/auth/auth.service';
-import {  LoginPopupsComponent } from '../components/login-popups/login-popups.component';
+import { LoginPopupsComponent } from '../components/login-popups/login-popups.component';
 import { RouterModule } from '@angular/router'; 
 import { Router } from '@angular/router';
 

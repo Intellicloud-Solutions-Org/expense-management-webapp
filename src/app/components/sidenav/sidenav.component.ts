@@ -6,7 +6,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule} from '@angular/common';
 import { Router } from '@angular/router';
-import { AuthService } from '/Project/expense-management-webapp/src/app/services/auth/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-sidenav',

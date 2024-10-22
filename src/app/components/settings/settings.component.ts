@@ -4,6 +4,7 @@ import { UserService } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { UserProfileService } from '../../services/user-profile.service'
 
 @Component({
   selector: 'app-settings',
@@ -18,15 +19,15 @@ export class SettingsComponent implements OnInit {
   userName: string = '';
   email: string = '';
 
-  constructor(private userService: UserService) {}
+  constructor(private userProfile: UserProfileService) {}
 
   ngOnInit(): void {
 
-    this.initializeUserData();
+  this.initializeUserData();
 }
     initializeUserData()
     {
-      this.userService.getUserInfo().subscribe(data => {
+      this.userProfile.getUserInfo().subscribe(data => {
         this.companyName = data.companyName;
         this.designation = data.designation;
         this.userName = data.userName;

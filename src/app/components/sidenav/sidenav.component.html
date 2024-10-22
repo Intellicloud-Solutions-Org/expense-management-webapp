@@ -9,10 +9,15 @@
           <mat-icon class="nav-icon">person_pin</mat-icon>
           <span class="nav-text">Manager View</span>
         </a>
-          
-          <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard" [ngClass]="{'collapsed': !isExpanded}"class="nav-item">
+        
+
+          <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard" [ngClass]="{'collapsed': !isExpanded}"class="nav-item" *ngIf="userRole === 'Manager'">
             <mat-icon class="nav-icon">dashboard</mat-icon>
-            <span class="nav-text">Dashboard</span></a>
+            <span class="nav-text">Manager Dashboard</span></a>
+
+            <a mat-list-item routerLinkActive="list-item-active" routerLink="/user-dashboard" [ngClass]="{'collapsed': !isExpanded}"class="nav-item">
+              <mat-icon class="nav-icon">dashboard</mat-icon>
+              <span class="nav-text">User Dashboard</span></a>
         
         <a mat-list-item routerLinkActive="list-item-active" routerLink="/expense" [ngClass]="{'collapsed': !isExpanded}" class="nav-item">
           <mat-icon class="nav-icon">local_atm</mat-icon> 
@@ -38,7 +43,7 @@
       
          <!-- Admin Menu Items -->
           <!--*ngIf="userRole === 'Admin'"-->
-      <ng-container >
+      <ng-container *ngIf="userRole === 'Admin'"  >
 
         <a mat-list-item routerLink="/admin-dashboard" routerLinkActive="list-item-active" [ngClass]="{'collapsed': !isExpanded}" class="nav-item">
           <mat-icon class="nav-icon">dashboard</mat-icon>

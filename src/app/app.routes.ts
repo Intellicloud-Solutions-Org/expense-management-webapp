@@ -10,6 +10,7 @@ import { OfficeExpenseManagementComponent } from './components/office-expense-ma
 import { AdminTaskComponent } from './components/admin-task/admin-task.component'
 import { authGuard } from '../app/services/auth/auth.guard';
 import { RegisterComponent} from '../app/register/register.component'
+import { UserDashboardComponent } from '../app/components/user-dashboard/user-dashboard.component';
 
 
 export const routes: Routes = [
@@ -37,41 +38,46 @@ export const routes: Routes = [
        // canActivate: [authGuard], 
         //data: { roles: ['Admin', 'Manager', 'User'] } 
       },
+
+      {
+        path: 'user-dashboard',
+        component: UserDashboardComponent,
+      },
       {
         path: 'expense',
         component: ExpenseComponent,
-        canActivate: [authGuard], 
-        data: { roles: ['Admin', 'Manager', 'User'] } 
+        // canActivate: [authGuard], 
+        // data: { roles: ['Admin', 'Manager', 'User'] } 
       },
       {
         path: 'report',
         component: ReportComponent,
-        canActivate: [authGuard], 
-        data: { roles: ['Admin', 'Manager', 'User'] } 
+        // canActivate: [authGuard], 
+        // data: { roles: ['Admin', 'Manager', 'User'] } 
       },
       {
         path: 'settings',
         component: SettingsComponent,
-        canActivate: [authGuard], 
-        data: { roles: ['Admin', 'Manager', 'User'] } 
+        // canActivate: [authGuard], 
+        // data: { roles: ['Admin', 'Manager', 'User'] } 
       },
       {
         path: 'admin-dashboard',
         component: AdminDashboardComponent,
-        canActivate: [authGuard], 
-        data: { roles: ['Admin'] } 
+       // canActivate: [authGuard], 
+       // data: { roles: ['Admin'] } 
       },
       {
         path: 'office-expense',
         component: OfficeExpenseManagementComponent,
-        canActivate: [authGuard], 
-        data: { roles: ['Admin'] }
+        // canActivate: [authGuard], 
+        // data: { roles: ['Admin'] }
       },
       {
         path: 'adminTask',
         component: AdminTaskComponent,
-        canActivate: [authGuard], 
-        data: { roles: ['Admin'] }
+        // canActivate: [authGuard], 
+        // data: { roles: ['Admin'] }
       }
     ],
   },

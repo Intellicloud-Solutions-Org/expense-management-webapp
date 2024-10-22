@@ -14,9 +14,9 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ExpenseService } from './services/expense.service';
-import { UserService } from '../app/services/user.service';
+import { UserProfileService } from '../app/services/user-profile.service';
 import { LoginPopupsComponent } from './components/login-popups/login-popups.component';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { jwtInterceptor } from '../app/services/auth/jwt.interceptor';
 
 
@@ -29,7 +29,7 @@ export function initializeExpense(expenseService: ExpenseService): () => Promise
   };
 }
 
-export function initializeUser(userService: UserService): () => Promise<any> {
+export function initializeUser(userService: UserProfileService): () => Promise<any> {
   return () => {
     return userService.getUserInfo().toPromise().then(data => {
       // Store the data for later use
@@ -61,7 +61,7 @@ export function initializeUser(userService: UserService): () => Promise<any> {
     LoginPopupsComponent 
   ],
 
-  providers: [ExpenseService, UserService,
+  providers: [ExpenseService, UserProfileService,
     {
       provide: APP_INITIALIZER,
       useFactory: initializeExpense,
@@ -71,10 +71,16 @@ export function initializeUser(userService: UserService): () => Promise<any> {
     {
       provide: APP_INITIALIZER,
       useFactory: initializeUser,
-      deps: [UserService],
+      deps: [UserProfileService],
       multi: true // Allows multiple initializers
     },
-    provideHttpClient(withInterceptors([jwtInterceptor]))
+    //provideHttpClient(withInterceptors([jwtInterceptor]))
+    {
+      provide: HTTP_INTERCEPTORS,
+      useValue: jwtInterceptor,
+      multi: true
+    }
+
   ],
 })
 export class AppModule {}

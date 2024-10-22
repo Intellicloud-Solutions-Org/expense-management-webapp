@@ -1,0 +1,176 @@
+.info-box {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 20px;
+    margin: -20px 0;
+    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  }
+
+  .header-top{
+    font-size: 1.6rem; 
+    font-style: oblique;
+    color: #808080;
+  }
+
+  .card {
+    background-color: #9ee3cd;
+    border: 0px solid #12362a;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 20px 15px rgba(22, 26, 71, 0.1);
+  }
+  
+  .card-body {
+    padding: 18px;
+  }
+
+  /*
+  .card-text {
+    color: #090909;
+    font-size: 1rem;
+  }
+  */
+
+  .card-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    font-style: italic;
+    color: #555;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .card-icon {
+    font-size: 2rem;
+    color: #f7f8f9; 
+    border: 0px solid #2d4452;
+    padding: 10px;
+    display: inline-block;
+    border-radius: 2px;
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.1);
+  }
+
+.icon-1{
+    background-color: #10c4b5;
+}
+
+.icon-2{
+    background-color: #0e8174; 
+}
+
+.icon-3{
+    background-color: #005562;
+}
+
+.chart{ 
+  justify-content: space-evenly;
+}
+.chart-container {
+  height: 300px;
+    padding: 5px;
+    background-color: rgb(248, 250, 252);
+    box-shadow: 0 20px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .chart-container1 {
+    height: 300px;
+    padding: 5px;
+    background-color: rgb(248, 251, 253);
+    box-shadow: 0 20px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  }
+ 
+  .table-container{
+    background-color: #9ee3cd;
+    padding: 5px;
+    box-shadow: 0 20px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+  }
+  .table th{
+    font-size: 1.1rem;
+    font-weight: normal;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #f4f5f7;
+    background-color: #0e8174;
+    text-align: center;
+   }
+  
+   thead {
+    font-size: 15px;
+  }
+
+    .amount{
+      text-align: right ;
+    }
+
+    .approve{
+      text-align: center;
+    }
+
+    .custom-thead {
+      background-color: #4CAF50; 
+      color: white; 
+  }
+
+  table td button {
+    padding: 5px 8px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  table td button:nth-child(1) {
+    background-color: #28a745; 
+  }
+  
+  table td button:nth-child(2) {
+    background-color: #dc3545; 
+  }
+  
+  table td button:hover {
+    opacity: 0.8;
+  }
+
+  .date{
+    text-align: center;
+  }
+
+  .receipt{
+    text-align: center;
+  }
+
+  .cmt{
+    text-align: center;
+  }
+
+  table td textarea {
+    width: 100%;
+  padding: 5px;
+  border: 1px solid #ddd; 
+  border-radius: 4px;
+  background-color: transparent; 
+  box-sizing: border-box;
+  color: #000; 
+  }
+
+  .select{
+    display: flex;
+    gap: 10px; 
+    margin-bottom: 15px;
+  }

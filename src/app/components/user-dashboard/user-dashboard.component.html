@@ -1,7 +1,7 @@
 <div class="container-fluid content">
     <div class="info-box p-4 border bg-light mt-1">
         <div class="header-box">
-            <p class="header-top">MANAGER DASHBOARD</p>
+            <p class="header-top">USER DASHBOARD</p>
             </div>
     <div class="row mt-2">
         <div class="col-md-4 mb-2">
@@ -76,58 +76,4 @@
             </tbody>
         </table>
     </div>
-
-    <!--*ngIf="userRole === 'Manager' -->
-
-    <div class="table-container mt-5">
-        <h6 class="text-center mt-2" style="font-style: italic; font-weight:500px; color: #005562"> Team Approval Requests </h6>
-
-        <div class="select">
-            <button class="btn btn-success btn-sm" (click)="approveSelected()">Approve Selected</button>
-            <button class="btn btn-danger btn-sm" (click)="rejectSelected()">Reject Selected</button>
-          </div>
-        
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th><input type="checkbox" (change)="SelectAll($event)" /></th>
-                        <th scope="col">Emp Name</th>
-                        <th scope="col">Expense Type</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Submission Date</th>
-                        <th scope="col">Receipts</th>
-                        <th scope="col">Requests</th>
-                        <th scope="col">Comments</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                <tr *ngFor="let item of teamApprovalRequestsData">
-                    <td>
-                        <input type="checkbox" [(ngModel)]="item.selected" />
-                      </td>
-                    <td class="name">{{ item.empName }}</td>
-                    <td>{{ item.expenseType }}</td>
-                    <td class="amount">{{ item.amount }}</td>
-                    <td class="date">{{ item.submissionDate }}</td>
-                    <td class="receipt">
-                        <a *ngIf="item.receipt" [href]="item.receipt" target="_blank">View</a>
-                        <span *ngIf="!item.receipt">No Receipt</span>
-                      </td>
-                    <td>
-                        <div class="buttons-container">
-                        <button (click)="approveItem(item)">Approve</button>
-                        <button (click)="rejectItem(item)">Reject</button>
-                        </div>
-                        <app-confirmdialog></app-confirmdialog>
-                      </td>
-                    <td class="cmt">
-                        <textarea [(ngModel)]="item.comments" placeholder="Add comment here" style= " height: 40px;"></textarea>
-                    </td>
-                  </tr>
-                </tbody>
-            </table>
-        </div>
-</div>
-</div>
 
