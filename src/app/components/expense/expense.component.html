@@ -2,7 +2,7 @@
 
     <div class="info-box p-4 border bg-light mt-1">
                 <p class="header-top">EXPENSE</p>
-                <form>
+                <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
                     <!-- Row 1: Date Field -->
                     <div class="form-row justify-content-end mb-3">
                         <div class="col mb-4 date-group">
@@ -57,7 +57,7 @@
                         <div class="col receipt-grp">
                             <label class="label" for="receipts">Upload Receipts</label>
                             <div>
-                            <input type="file" class="form-control-file receipt-input" id="receipts" accept=".jpg,.png,.pdf"  required>
+                            <input type="file" class="form-control-file receipt-input" id="receipts" accept=".jpg,.png,.pdf" (change)="onFileSelected($event)"  required>
                             </div>
                         </div>
                     </div>

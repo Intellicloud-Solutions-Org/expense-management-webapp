@@ -15,6 +15,9 @@ export const authGuard: CanActivateFn = (route, state) => {
     return false;
   }
 
+  return true;
+};
+
  // if (expectedRoles.includes(userRole)) {
    // return true;
   //} else {
@@ -22,5 +25,3 @@ export const authGuard: CanActivateFn = (route, state) => {
     //return false;
   //}
 
-  return true;
-};

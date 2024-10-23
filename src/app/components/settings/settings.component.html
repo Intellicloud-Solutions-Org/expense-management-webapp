@@ -15,7 +15,7 @@
             </div>
             <div class="col-md-3 mb-2">
                 <div class="form-group">
-                  <input name="designation" type="text" class="form-control" id="email" [ngModelOptions]="{standalone: true}"  [(ngModel)]="designation" placeholder="Designation" disabled>
+                  <input name="email" type="text" class="form-control" id="email" [ngModelOptions]="{standalone: true}"  [(ngModel)]="designation" placeholder="Designation" disabled>
                 </div>
               </div>
             <div class="col-md-3 mb-2">
@@ -33,12 +33,12 @@
           <div class="row mt-4">
             <div class="col-md-6 mb-2">
               <div class="form-group">
-                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name">
+                <input type="text" class="form-control" id="firstName" [(ngModel)]="firstName" [ngModelOptions]="{standalone: true}" name="firstName" placeholder="First Name">
               </div>
             </div>
             <div class="col-md-6 mb-2">
               <div class="form-group">
-                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name">
+                <input type="text" class="form-control" id="lastName" [(ngModel)]="lastName" [ngModelOptions]="{standalone: true}" name="lastName" placeholder="Last Name">
               </div>
             </div>
           </div>

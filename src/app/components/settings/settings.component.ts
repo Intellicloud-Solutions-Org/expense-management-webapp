@@ -18,6 +18,8 @@ export class SettingsComponent implements OnInit {
   designation: string = '';
   userName: string = '';
   email: string = '';
+firstName: any;
+lastName: any;
 
   constructor(private userProfile: UserProfileService) {}
 
@@ -25,15 +27,31 @@ export class SettingsComponent implements OnInit {
 
   this.initializeUserData();
 }
-    initializeUserData()
-    {
-      this.userProfile.getUserInfo().subscribe(data => {
-        this.companyName = data.companyName;
-        this.designation = data.designation;
-        this.userName = data.userName;
-        this.email = data.email;
-      });
-    }
+private initializeUserData() {
+  const userInfo = localStorage.getItem('userInfo'); 
+  if (userInfo) {
+    const parsedData = JSON.parse(userInfo); 
+    this.companyName = parsedData.data.companyName;
+    this.userName = parsedData.data.username;
+    this.email = parsedData.data.email;
+    this.firstName = parsedData.data.firstName;  
+    this.lastName = parsedData.data.lastName;  
+    this.designation = parsedData.data.designation; 
+
+  } else {
+    console.warn('No userInfo found in local storage.');
+  }
+}
+
+    // initializeUserData()
+    // {
+    //   this.userProfile.getUserInfo().subscribe(data => {
+    //     this.companyName = data.companyName;
+    //     this.designation = data.designation;
+    //     this.userName = data.userName;
+    //     this.email = data.email;
+    //   });
+    // }
 }
 
 

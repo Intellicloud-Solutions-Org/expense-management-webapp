@@ -13,30 +13,38 @@ import { MatButtonModule } from '@angular/material/button';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { ExpenseService } from './services/expense.service';
+//import { ExpenseService } from './services/expense.service';
 import { UserProfileService } from '../app/services/user-profile.service';
 import { LoginPopupsComponent } from './components/login-popups/login-popups.component';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { jwtInterceptor } from '../app/services/auth/jwt.interceptor';
 
 
-export function initializeExpense(expenseService: ExpenseService): () => Promise<any> {
-  return () => {
-    return expenseService.getDummyEmployeeData().toPromise().then(data => {
-      // Store the data for later use
-      localStorage.setItem('employeeData', JSON.stringify(data));
-    });
-  };
-}
+// export function initializeExpense(expenseService: ExpenseService): () => Promise<void> {
+//   return () => {
+//     return new Promise<void>((resolve, reject) => {
+//       expenseService.getCurrentUser().subscribe({
+//         next: (data) => {
+//           localStorage.setItem('employeeData', JSON.stringify(data));
+//           resolve();  // Resolve the promise when data is successfully fetched
+//         },
+//         error: (error) => {
+//           console.error('Error initializing user data:', error);
+//           reject(error);  // Reject the promise in case of error
+//         }
+//       });
+//     });
+//   };
+// }
 
-export function initializeUser(userService: UserProfileService): () => Promise<any> {
-  return () => {
-    return userService.getUserInfo().toPromise().then(data => {
-      // Store the data for later use
-      localStorage.setItem('userInfo', JSON.stringify(data));
-    });
-  };
-}
+// export function initializeUser(userService: UserProfileService): () => Promise<any> {
+//   return () => {
+//     return userService.getUserInfo().toPromise().then(data => {
+//       // Store the data for later use
+//       localStorage.setItem('userInfo', JSON.stringify(data));
+//     });
+//   };
+// }
 
 @NgModule({
   declarations: [],
@@ -61,19 +69,20 @@ export function initializeUser(userService: UserProfileService): () => Promise<a
     LoginPopupsComponent 
   ],
 
-  providers: [ExpenseService, UserProfileService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeExpense,
-      deps: [ExpenseService],
-      multi: true
-    },
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeUser,
-      deps: [UserProfileService],
-      multi: true // Allows multiple initializers
-    },
+  providers: [ //UserProfileService,
+    // {
+      //ExpenseService
+    //   provide: APP_INITIALIZER,
+    //   useFactory: initializeExpense,
+    //   deps: [ExpenseService],
+    //   multi: true
+    // },
+    // {
+    //   provide: APP_INITIALIZER,
+    //   useFactory: initializeUser,
+    //   deps: [UserProfileService],
+    //   multi: true // Allows multiple initializers
+    // },
     //provideHttpClient(withInterceptors([jwtInterceptor]))
     {
       provide: HTTP_INTERCEPTORS,
