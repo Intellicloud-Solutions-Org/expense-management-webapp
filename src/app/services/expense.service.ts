@@ -14,14 +14,14 @@ import { ExpenseUtils } from '../shared/utils/expenseType';
 })
 export class ExpenseService {
   
-  private apiUrl = 'http://localhost:8080/expenses';
+  private apiUrl = 'http://localhost:8080/expense/add';
 
   constructor(private http: HttpClient) {}
 
  
 
  addExpense(expenseData: FormData): Observable<any> {
-  return this.http.post<any>(`${this.apiUrl}/add`, expenseData); 
+  return this.http.post<any>(`${this.apiUrl}`, expenseData); 
 }
   
 

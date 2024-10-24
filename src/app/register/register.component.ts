@@ -58,7 +58,7 @@ export class RegisterComponent {
     this.userRole = localStorage.getItem('userRole');
   }
 
-  // Mock registration
+  
   onRegister() {
     if (this.registerForm.valid) {
       const formData = this.registerForm.value;

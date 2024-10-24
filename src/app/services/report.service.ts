@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable , of } from 'rxjs';
-import { ExpenseUtils } from '../shared/utils/expenseType';
+//import { ExpenseUtils } from '../shared/utils/expenseType';
 
 interface Expense {
   empId: number;
@@ -16,17 +16,25 @@ interface Expense {
 })
 export class ReportService {
 
-  constructor() { }
+  private apiUrl = 'http://localhost:8080/expenses';
 
-  getExpenses(): Observable<Expense[]> {
 
-    const dummyExpenses: Expense[] = [
-      { empId: 1, expenseType: ExpenseUtils.getExpenseType('Bills'), receipt: null, amount: 1150, status: 'Admin Approved' },
-      { empId: 2, expenseType: ExpenseUtils.getExpenseType('professional development'), receipt: 'receipt1.pdf', amount: 75, status: 'Completed' },
-      { empId: 3, expenseType: ExpenseUtils.getExpenseType('Team Activities'), receipt: null, amount: 50, status: 'Manager Rejected' },
-      { empId: 4, expenseType: ExpenseUtils.getExpenseType('Travel'), receipt: null, amount: 150, status: 'Manager Rejected' }
-    ];
+ //  http://localhost:8080/expense/add  Method: Post for add expense
+//  http://localhost:8080/expense/getExpenses  Method: Get for getting all expense
+//  http://localhost:8080/expense/updateExpense  Method: Put For Updating expense
+//  http://localhost:8080/expense/delete/{id}  Method: Delete For Deleting expense
 
-    return of(dummyExpenses); 
-  }
+constructor(private http: HttpClient) { }
+
+getExpenses(): Observable<Expense[]> {
+  return this.http.get<Expense[]>(`${this.apiUrl}/getExpenses`);
+}
+
+updateExpense(expense: Expense): Observable<Expense> {
+  return this.http.put<Expense>(`${this.apiUrl}/updateExpense`, expense);
+}
+
+deleteExpense(empId: number): Observable<void> {
+  return this.http.delete<void>(`${this.apiUrl}/delete/${empId}`);
+}
 }
