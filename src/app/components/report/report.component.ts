@@ -115,6 +115,8 @@ export class ReportComponent implements OnInit {
       }
     });
   }
+
+  
 }
   
 //   expenses: Expense[] = [];

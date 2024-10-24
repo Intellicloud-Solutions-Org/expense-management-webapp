@@ -12,7 +12,20 @@
                     </div>
 
                     <!-- Row 2: Employee Details -->
-                    <div class="form-row mb-4">
+
+                      <!-- Row 2: Employee Details -->
+    <div class="form-row mb-4">
+        <div class="col mb-4"> 
+            <input type="text" class="form-control" id="employeeName" formControlName="employeeName" placeholder="Employee Name" >
+        </div>
+        <div class="col mb-4">
+            <input type="text" class="form-control" id="employeeId" formControlName="employeeId" placeholder="Employee ID" >
+        </div>
+        <div class="col mb-4">
+            <input type="text" class="form-control" id="designation" formControlName="designation" placeholder="Employee Designation">
+        </div>
+    </div>
+                    <!-- <div class="form-row mb-4">
                         <div  class="col mb-4"> 
                             <input type="text" class="form-control" id="employeeName" [(ngModel)] ="employeeName" name="employeeName" [ngModelOptions]="{standalone: true}"  placeholder="Employee Name"  disabled >
                         </div>
@@ -22,11 +35,11 @@
                         <div class="col mb-4">
                             <input type="text" class="form-control" id="designation" [(ngModel)] ="designation " name="designation" [ngModelOptions]="{standalone: true}" placeholder="Employee Designation"   disabled>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- Row 3: Manager, Expense Type, Expense Amount -->
                     <!-- Manager Dropdown-->
-                    <div class="form-row mb-4">
+                    <!-- <div class="form-row mb-4">
                         <div class="col mb-4">
                             <input type="text"
                             [(ngModel)]="asyncSelected"
@@ -37,20 +50,21 @@
                             placeholder="Select Manager (Type here to search..)"
                             id="typeahead-basic">
                         </div>
+                        </div> -->
 
-                        <!--Expense Type-->
-                        <div class="col mb-4">
-                            <select class="form-control" id="expenseType" required style="color: teal">
-                            <option value="">Select Expense Type</option>
-                            <option *ngFor="let type of expenseTypes" [value]="type">{{ type }}</option>
-                            </select>
-                        </div>
+                       <!-- Expense Type -->
+    <div class="col mb-4">
+        <select class="form-control" formControlName="expenseType" required style="color: teal">
+            <option value="">Select Expense Type</option>
+            <option *ngFor="let type of expenseTypes" [value]="type">{{ type }}</option>
+        </select>
+    </div>
 
-                        <!--Expense Amount-->
-                        <div class="col mb-4">
-                            <input type="number" class="form-control" id="expenseAmount" placeholder="Expense Amount" required>
-                        </div>
-                    </div>
+    <!-- Expense Amount -->
+    <div class="col mb-4">
+        <input type="number" class="form-control" id="expenseAmount" formControlName="expenseAmount" placeholder="Expense Amount" required>
+    </div>
+
 
                     <!-- Row 4: File Upload -->
                     <div class="form-row mb-1">
@@ -68,6 +82,7 @@
                             <button type="submit" class="btn btn-primary">Send for Approval</button>
                         </div>
                     </div>
+                
                 </form>
         </div>
 </div>

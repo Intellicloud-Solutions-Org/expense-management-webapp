@@ -16,7 +16,7 @@ interface Expense {
 })
 export class ReportService {
 
-  private apiUrl = 'http://localhost:8080/expenses';
+  private apiUrl = 'http://localhost:8080/expense';
 
 
  //  http://localhost:8080/expense/add  Method: Post for add expense

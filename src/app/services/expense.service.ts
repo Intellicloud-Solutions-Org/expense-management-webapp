@@ -29,18 +29,18 @@ export class ExpenseService {
     return of(ExpenseUtils.expenseTypes);
   }
 
-  getManagers(): Observable<string[]> {
-    const managers = [
-      'Alice Johnson',
-      'Bob Smith',
-      'Charlie Brown',
-      'Diana Prince',
-      'Edward Norton',
-      'Fiona Gallagher',
-      'George Clooney'
-    ];
-    return of(managers); 
-  }
+  // getManagers(): Observable<string[]> {
+  //   const managers = [
+  //     'Alice Johnson',
+  //     'Bob Smith',
+  //     'Charlie Brown',
+  //     'Diana Prince',
+  //     'Edward Norton',
+  //     'Fiona Gallagher',
+  //     'George Clooney'
+  //   ];
+  //   return of(managers); 
+  // }
   }
 
 
