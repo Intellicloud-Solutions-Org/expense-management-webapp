@@ -4,15 +4,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ReportService } from '../../services/report.service';
 import { ExpenseService } from '../../services/expense.service';
+//import { ExpenseComponent } from '../../components/expense/expense.component';
 
 interface Expense {
-  empId: number;
+  id: number;
   expenseType: string | undefined;
   receipt: string | null;
-  amount: number;
+  expenseAmount: number;
   status: string;
   isEditing?: boolean;  
-  tempReceipt?: string | File | null;  
+ tempReceipt?: string | File | null
+  //tempReceipt?: File[] | null;
   tempAmount?: number | null;
 }
 
@@ -28,6 +30,7 @@ export class ReportComponent implements OnInit {
 
   expenses: Expense[] = [];
   currentEditingExpense: Expense | null = null;
+  expenseCount: number = 0;
 
   constructor(private expenseService: ExpenseService, private reportService: ReportService) { }  // Inject the ExpenseService
 
@@ -37,8 +40,9 @@ export class ReportComponent implements OnInit {
 
   fetchExpenses(): void {
     this.reportService.getExpenses().subscribe({
-      next: (data: Expense[]) => {
-        this.expenses = data;
+      next: (response: any) => {
+        this.expenses = response.data;
+        this.expenseCount = this.expenses.length;
       },
       error: (err) => {
         console.error('Failed to fetch expenses:', err);
@@ -50,6 +54,7 @@ export class ReportComponent implements OnInit {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       expense.tempReceipt = input.files[0];
+      //expense.tempReceipt = Array.from(input.files);
     } else {
       expense.tempReceipt = null;  
     }
@@ -65,18 +70,19 @@ export class ReportComponent implements OnInit {
     this.currentEditingExpense = expense;
     expense.isEditing = true;
     expense.tempReceipt = expense.receipt;
-    expense.tempAmount = expense.amount;
+   // expense.tempReceipt = []; 
+    expense.tempAmount = expense.expenseAmount;
   }
 
   saveExpense(expense: Expense): void {
     expense.receipt = expense.tempReceipt as string;
-    expense.amount = expense.tempAmount as number;
+    expense.expenseAmount = expense.tempAmount as number;
     expense.isEditing = false;
 
     this.reportService.updateExpense(expense).subscribe({
       next: (updatedExpense: Expense) => {
       
-        const index = this.expenses.findIndex(e => e.empId === updatedExpense.empId);
+        const index = this.expenses.findIndex(e => e.id === updatedExpense.id);
         if (index !== -1) {
           this.expenses[index] = updatedExpense;
         }
@@ -88,7 +94,7 @@ export class ReportComponent implements OnInit {
         alert('Failed to save the expense. Please try again.');
       }
     });
-  }
+   }
 
   cancelEdit(expense: Expense): void {
     expense.isEditing = false;
@@ -97,17 +103,18 @@ export class ReportComponent implements OnInit {
     this.currentEditingExpense = null;
   }
 
-  deleteExpense(empId: number): void {
-    this.reportService.deleteExpense(empId).subscribe({
+  deleteExpense(id: number): void {
+    this.reportService.deleteExpense(id).subscribe({
       next: () => {
-        const expenseToDelete = this.expenses.find(expense => expense.empId === empId);
+        const expenseToDelete = this.expenses.find(expense => expense.id === id);
         if (expenseToDelete && this.currentEditingExpense === expenseToDelete) {
           this.currentEditingExpense = null;
         }
 
       
-        this.expenses = this.expenses.filter(expense => expense.empId !== empId);
-        console.log('Deleted expense with Emp ID:', empId);
+        this.expenses = this.expenses.filter(expense => expense.id !== id);
+        console.log('Deleted expense with Emp ID:', id);
+         
       },
       error: (err) => {
         console.error('Failed to delete expense:', err);
@@ -118,65 +125,4 @@ export class ReportComponent implements OnInit {
 
   
 }
-  
-//   expenses: Expense[] = [];
-
-//   constructor(private expenseService: ReportService) {}  
-
-//   ngOnInit(): void {
-    
-  
-//   }
-
-//   onFileChange(event: Event, expense: Expense): void {
-//     const input = event.target as HTMLInputElement;
-//     if (input.files && input.files.length > 0) {
-//       expense.tempReceipt = input.files[0];
-//     } else {
-//       expense.tempReceipt = null;  
-//     }
-//   }
-
-//   currentEditingExpense: Expense | null = null;
-
-//   editExpense(expense: Expense) {
-//     if (this.currentEditingExpense && this.currentEditingExpense !== expense) {
-//       this.currentEditingExpense.isEditing = false;
-//       this.currentEditingExpense.tempReceipt = null;
-//       this.currentEditingExpense.tempAmount = null;
-//     }
-
-//   this.currentEditingExpense = expense;
-//   expense.isEditing = true;
-//   expense.tempReceipt = expense.receipt;
-//   expense.tempAmount = expense.amount;
-// }
-
-// saveExpense(expense: Expense) {
-//   expense.receipt = expense.tempReceipt as string;
-//   expense.amount = expense.tempAmount as number;
-//   expense.isEditing = false;
-//   this.currentEditingExpense = null;
-
-//   console.log('Saved expense:', expense);
-// }
-
-// cancelEdit(expense: Expense) {
-//   expense.isEditing = false;
-//   expense.tempReceipt = null;
-//   expense.tempAmount = null;
-//   this.currentEditingExpense = null;
-// }
-
-// deleteExpense(empId: number) {
- 
-//   const expenseToDelete = this.expenses.find(expense => expense.empId === empId);
-
-//   if (expenseToDelete && this.currentEditingExpense === expenseToDelete) {
-//     this.currentEditingExpense = null;
-//   }
-//   this.expenses = this.expenses.filter(expense => expense.empId !== empId);
-//   console.log('Deleted expense with Emp ID:', empId);
-// }
-// }
   

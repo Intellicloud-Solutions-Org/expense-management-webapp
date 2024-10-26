@@ -2,10 +2,11 @@
 
     <div class="info-box p-4 border bg-light mt-1">
                 <p class="header-top">REPORTS</p> <!--Title-->
+              
                 <table class="table table-striped table-bordered">
                   <thead>  <!--Table Header -->
                     <tr>
-                      <th scope="col">Emp ID</th>
+                      <th scope="col">Expense No.</th>
                       <th scope="col">Expense Type</th>
                       <th scope="col">Receipt</th>
                       <th scope="col">Amount</th>
@@ -16,8 +17,8 @@
 
                   <!--Table Data-->
                   <tbody>
-                    <tr *ngFor="let expense of expenses">
-                      <td class="tb-data1">{{ expense.empId }}</td>
+                    <tr *ngFor="let expense of expenses; index as i">
+                      <td class="tb-data1">{{  i + 1 }}</td>
                       <td class="tb-data">{{ expense.expenseType }}</td>
                       <td class="tb-data">
                         <a *ngIf="expense.receipt && !expense.isEditing" [href]="expense.receipt" target="_blank">View</a>
@@ -25,15 +26,15 @@
                         <input name ="fileUpload" *ngIf="expense.isEditing" type="file" (change)="onFileChange($event, expense)" class="file-input" accept=".png,.jpg,.pdf">
                       </td>
                       <td class="tb-amt">
-                        <span class="amount" *ngIf="!expense.isEditing">{{ expense.amount | number:'1.2-2' }}</span>
-                        <input *ngIf="expense.isEditing" [(ngModel)]="expense.tempAmount" type="number" class="tb-amt-edit">
+                        <span class="amount" *ngIf="!expense.isEditing">{{ expense.expenseAmount | number:'1.2-2' }}</span>
+                        <input *ngIf="expense.isEditing" [(ngModel)]="expense.tempAmount" type="number" class="tb-amt-edit"  multiple>
                       </td>
                       <td class="tb-data">{{ expense.status }}</td>
                       <td class="tb-icons">
                         <i *ngIf="expense.isEditing" class="fas fa-check action-icon" (click)="saveExpense(expense)"></i>
                         <i *ngIf="expense.isEditing" class="fas fa-times action-icon" (click)="cancelEdit(expense)"></i>
                         <i *ngIf="!expense.isEditing" class="fas fa-edit action-icon" (click)="editExpense(expense)"></i>
-                        <i *ngIf="!expense.isEditing" class="fas fa-trash-alt action-icon" (click)="deleteExpense(expense.empId)"></i>
+                        <i *ngIf="!expense.isEditing" class="fas fa-trash-alt action-icon" (click)="deleteExpense(expense.id)"></i>
                       </td>
                     </tr>
                   </tbody>

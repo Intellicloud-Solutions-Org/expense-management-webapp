@@ -4,10 +4,10 @@ import { Observable , of } from 'rxjs';
 //import { ExpenseUtils } from '../shared/utils/expenseType';
 
 interface Expense {
-  empId: number;
+  id: number;
   expenseType: string | undefined;
   receipt: string | null;
-  amount: number;
+  expenseAmount: number;
   status: string;
 }
 

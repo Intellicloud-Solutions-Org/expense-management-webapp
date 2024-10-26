@@ -81,6 +81,8 @@ export class RegisterComponent {
 
   onPopupClose() {
     this.showPopup = false;
-    this.route.navigate(['login']);
+    if (this.popupTitle === 'Registration Success') {
+      this.route.navigate(['login']);
+    }
   }
 }
