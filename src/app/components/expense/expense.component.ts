@@ -28,7 +28,7 @@ export class ExpenseComponent implements OnInit {
   employeeId: string = '';
   designation: string = '';
 
-  uploadReceipt: File | null = null;
+  receipts: File | null = null;
 
   expenseForm: FormGroup;
 
@@ -86,19 +86,19 @@ export class ExpenseComponent implements OnInit {
   
     onFileSelected(event: any) {
       if (event.target.files && event.target.files.length > 0) {
-        this.uploadReceipt = event.target.files[0]; 
+        this.receipts = event.target.files[0]; 
       } else {
-        this.uploadReceipt= null;
+        this.receipts= null;
       }
     }
 
     onSubmit() {
-      if (this.expenseForm.valid && this.uploadReceipt) {
+      if (this.expenseForm.valid && this.receipts) {
         const formData = new FormData();
        // formData.append('manager', this.expenseForm.get('manager')?.value);
         formData.append('expenseType', this.expenseForm.get('expenseType')?.value);
         formData.append('expenseAmount', this.expenseForm.get('expenseAmount')?.value);
-        formData.append('uploadReceipt', this.uploadReceipt);
+        formData.append('receipts', this.receipts);
     
       
         this.expenseService.addExpense(formData).subscribe({

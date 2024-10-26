@@ -6,7 +6,7 @@ import { Observable , of } from 'rxjs';
 interface Expense {
   id: number;
   expenseType: string | undefined;
-  receipt: string | null;
+  receipts: string | null;
   expenseAmount: number;
   status: string;
 }
@@ -26,8 +26,8 @@ export class ReportService {
 
 constructor(private http: HttpClient) { }
 
-getExpenses(): Observable<Expense[]> {
-  return this.http.get<Expense[]>(`${this.apiUrl}/getExpenses`);
+getExpenses(): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/getExpenses`);
 }
 
 updateExpense(expense: Expense): Observable<Expense> {

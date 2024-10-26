@@ -9,7 +9,7 @@ import { ExpenseService } from '../../services/expense.service';
 interface Expense {
   id: number;
   expenseType: string | undefined;
-  receipt: string | null;
+  receipts: string | null;
   expenseAmount: number;
   status: string;
   isEditing?: boolean;  
@@ -69,13 +69,13 @@ export class ReportComponent implements OnInit {
 
     this.currentEditingExpense = expense;
     expense.isEditing = true;
-    expense.tempReceipt = expense.receipt;
+    expense.tempReceipt = expense.receipts;
    // expense.tempReceipt = []; 
     expense.tempAmount = expense.expenseAmount;
   }
 
   saveExpense(expense: Expense): void {
-    expense.receipt = expense.tempReceipt as string;
+    expense.receipts = expense.tempReceipt as string;
     expense.expenseAmount = expense.tempAmount as number;
     expense.isEditing = false;
 
@@ -121,8 +121,6 @@ export class ReportComponent implements OnInit {
         alert('Failed to delete the expense. Please try again.');
       }
     });
-  }
-
-  
+  } 
 }
   

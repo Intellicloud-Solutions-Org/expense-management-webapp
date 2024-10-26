@@ -21,8 +21,8 @@
                       <td class="tb-data1">{{  i + 1 }}</td>
                       <td class="tb-data">{{ expense.expenseType }}</td>
                       <td class="tb-data">
-                        <a *ngIf="expense.receipt && !expense.isEditing" [href]="expense.receipt" target="_blank">View</a>
-                        <span *ngIf="!expense.receipt && !expense.isEditing">No Receipt</span>
+                        <a *ngIf="expense.receipts && !expense.isEditing" [href]="expense.receipts" target="_blank">View</a>
+                        <span *ngIf="!expense.receipts && !expense.isEditing">No Receipt</span>
                         <input name ="fileUpload" *ngIf="expense.isEditing" type="file" (change)="onFileChange($event, expense)" class="file-input" accept=".png,.jpg,.pdf">
                       </td>
                       <td class="tb-amt">
