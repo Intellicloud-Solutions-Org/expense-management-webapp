@@ -27,13 +27,10 @@ export class ExpenseComponent implements OnInit {
   employeeName: string = '';
   employeeId: string = '';
   designation: string = '';
-
   receipts: File | null = null;
 
   expenseForm: FormGroup;
 
-
-  
 
   constructor(private expenseService: ExpenseService, private fb: FormBuilder ) {
     
@@ -70,10 +67,6 @@ export class ExpenseComponent implements OnInit {
     this.expenseService.getExpenseType().subscribe((types: string[]) => {
       this.expenseType = types;
     });
-
-    // this.expenseService.getManagers().subscribe(data => {
-    //   this.dataSource = data;
-    // });
   }
 
     public changeTypeaheadLoading(isLoading: boolean): void {

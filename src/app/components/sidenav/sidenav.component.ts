@@ -20,15 +20,12 @@ export class SidenavComponent  {
   isExpanded = true; 
   userRole: string | null = null; // Store user role
   
-
   constructor(private router: Router, private authService: AuthService) {}
 
-  ngOnInit(): void {
-    
+  ngOnInit(): void { 
   }
-  
+
   toggleSidebar() : void {
     this.isExpanded = !this.isExpanded;
   }
-
 }

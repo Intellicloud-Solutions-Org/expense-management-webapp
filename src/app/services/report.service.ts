@@ -11,6 +11,8 @@ interface Expense {
   status: string;
 }
 
+//updateExpense: FormData;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -30,11 +32,11 @@ getExpenses(): Observable<any> {
   return this.http.get<any>(`${this.apiUrl}/getExpenses`);
 }
 
-updateExpense(expense: Expense): Observable<Expense> {
-  return this.http.put<Expense>(`${this.apiUrl}/updateExpense`, expense);
+updateExpense(expense: FormData): Observable<any> {
+  return this.http.put<any>(`${this.apiUrl}/updateExpense`, expense)
 }
 
-deleteExpense(empId: number): Observable<void> {
-  return this.http.delete<void>(`${this.apiUrl}/delete/${empId}`);
+deleteExpense(id: number): Observable<void> {
+  return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
 }
 }

@@ -2,16 +2,16 @@
   <mat-sidenav #sidenav  mode="side" [opened]="isExpanded"  class="sidenav">
     <mat-nav-list>
        <!-- Default Items -->
-        <!--*ngIf= "userRole === 'Admin' || userRole === 'Manager' || userRole === 'User' "-->
+        <!--*ngIf= "userRole === 'Admin' || userRole === 'Manager' || userRole === 'User' " *ngIf="userRole === 'Manager'"-->
        <ng-container>
 
-        <a mat-list-item [ngClass]="{'collapsed': !isExpanded}" class="admin-nav-item" *ngIf="userRole === 'Manager'" >
+        <a mat-list-item [ngClass]="{'collapsed': !isExpanded}" class="admin-nav-item"  >
           <mat-icon class="nav-icon">person_pin</mat-icon>
           <span class="nav-text">Manager View</span>
         </a>
         
 
-          <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard" [ngClass]="{'collapsed': !isExpanded}"class="nav-item" *ngIf="userRole === 'Manager'">
+          <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard" [ngClass]="{'collapsed': !isExpanded}"class="nav-item">
             <mat-icon class="nav-icon">dashboard</mat-icon>
             <span class="nav-text">Manager Dashboard</span></a>
 
@@ -35,7 +35,7 @@
         </a>
         <mat-divider></mat-divider>
 
-        <a mat-list-item  [ngClass]="{'collapsed': !isExpanded}" class="admin-nav-item" *ngIf="userRole === 'Admin'" >
+        <a mat-list-item  [ngClass]="{'collapsed': !isExpanded}" class="admin-nav-item" >
           <mat-icon class="nav-icon">admin_panel_settings</mat-icon>
           <span class="nav-text">Admin View</span>
                 </a>
@@ -43,7 +43,7 @@
       
          <!-- Admin Menu Items -->
           <!--*ngIf="userRole === 'Admin'"-->
-      <ng-container *ngIf="userRole === 'Admin'"  >
+      <ng-container  >
 
         <a mat-list-item routerLink="/admin-dashboard" routerLinkActive="list-item-active" [ngClass]="{'collapsed': !isExpanded}" class="nav-item">
           <mat-icon class="nav-icon">dashboard</mat-icon>
@@ -75,24 +75,3 @@
 
 </mat-sidenav-container>
 
-<!--<a mat-list-item (click)="routeToUserDashboard()" [ngClass]="{'collapsed': !isExpanded}" class="nav-item">
-          <mat-icon class="nav-icon">arrow_back</mat-icon>
-          <span class="nav-text">Back to User view</span>
-        </a>
-        <div class="matlist" ></div>
-
-        <a mat-list-item (click)= "routeToDashboard()" [ngClass]="{'collapsed': !isExpanded}" class="nav-item">
-          <mat-icon class="nav-icon">arrow_back</mat-icon>
-          <span class="nav-text">Back to User view</span>
-        </a>
-
-        <a mat-list-item [ngClass]="{'collapsed': !isExpanded}" class="admin-nav-item" >
-          <mat-icon class="nav-icon">account_box</mat-icon>
-          <span class="nav-text">User View</span>
-        </a>
-
-        <a mat-list-item [ngClass]="{'collapsed': !isExpanded}" class="admin-nav-item" >
-          <mat-icon class="nav-icon">person_pin</mat-icon>
-          <span class="nav-text">Manager View</span>
-        </a>
-        -->

@@ -1,21 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ReportService } from '../../services/report.service';
-import { ExpenseService } from '../../services/expense.service';
-//import { ExpenseComponent } from '../../components/expense/expense.component';
+import { Router } from '@angular/router';
+//import { ExpenseService } from '../../services/expense.service';
 
 interface Expense {
   id: number;
   expenseType: string | undefined;
   receipts: string | null;
-  expenseAmount: number;
+  expenseAmount: string;
   status: string;
+  createdAt: string;
   isEditing?: boolean;  
- tempReceipt?: string | File | null
-  //tempReceipt?: File[] | null;
-  tempAmount?: number | null;
+  tempReceipt?: string | File | null;
+  tempAmount?: string | null;
 }
 
 @Component({
@@ -32,7 +32,7 @@ export class ReportComponent implements OnInit {
   currentEditingExpense: Expense | null = null;
   expenseCount: number = 0;
 
-  constructor(private expenseService: ExpenseService, private reportService: ReportService) { }  // Inject the ExpenseService
+  constructor(private cdref:ChangeDetectorRef, private router:Router, private reportService: ReportService) { }
 
   ngOnInit(): void {
     this.fetchExpenses();  // Fetch expenses from the backend when the component initializes
@@ -54,7 +54,6 @@ export class ReportComponent implements OnInit {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       expense.tempReceipt = input.files[0];
-      //expense.tempReceipt = Array.from(input.files);
     } else {
       expense.tempReceipt = null;  
     }
@@ -70,31 +69,71 @@ export class ReportComponent implements OnInit {
     this.currentEditingExpense = expense;
     expense.isEditing = true;
     expense.tempReceipt = expense.receipts;
-   // expense.tempReceipt = []; 
     expense.tempAmount = expense.expenseAmount;
   }
 
   saveExpense(expense: Expense): void {
-    expense.receipts = expense.tempReceipt as string;
-    expense.expenseAmount = expense.tempAmount as number;
-    expense.isEditing = false;
-
-    this.reportService.updateExpense(expense).subscribe({
-      next: (updatedExpense: Expense) => {
-      
+    const formData = new FormData();
+  
+    // Append expense properties to FormData
+    formData.append('receipts', expense.tempReceipt as string);
+    formData.append('expenseAmount', expense.tempAmount as string);
+    formData.append('expenseType',expense.expenseType as string);
+    formData.append('isEditing', 'false');
+    formData.append('createdAt',expense.createdAt);
+    formData.append('id', expense.id.toString());
+  
+    this.reportService.updateExpense(formData).subscribe({
+      next: (updatedExpense: any) => {
         const index = this.expenses.findIndex(e => e.id === updatedExpense.id);
         if (index !== -1) {
           this.expenses[index] = updatedExpense;
         }
         this.currentEditingExpense = null;
         console.log('Expense updated successfully:', updatedExpense);
-      },
+        alert("Expense updated successfully");
+        expense.isEditing=false;
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['report']);
+      })},
+
       error: (err) => {
         console.error('Failed to save expense:', err);
         alert('Failed to save the expense. Please try again.');
       }
     });
-   }
+  }
+
+
+  // saveExpense(expense: Expense, id: number): void {
+  //   const formData = new FormData();
+  //   formData.append('expenseAmount', expense.tempAmount?.toString() ?? '');
+  //   formData.append('expenseType', expense.expenseType ?? '');
+  //   formData.append('receipts', expense.receipts ?? '');
+  //   //formData.append('status', expense.status ?? '');
+  //   //formData.append('id', expense.id);
+
+  
+  //   if (expense.tempReceipt instanceof File) {
+  //     formData.append('receipts', expense.tempReceipt); // Append file if present
+  //   }
+  
+  //   this.reportService.updateExpense(formData, id).subscribe({
+  //     next: (updatedExpense: Expense) => {
+  //       const index = this.expenses.findIndex(e => e.id === updatedExpense.id);
+  //       if (index !== -1) {
+  //         this.expenses[index] = updatedExpense;
+  //       }
+  //       this.currentEditingExpense = null;
+  //       console.log('Expense updated successfully:', updatedExpense);
+  //     },
+  //     error: (err) => {
+  //       console.error('Failed to save expense:', err);
+  //       alert('Failed to save the expense. Please try again.');
+  //     }
+  //   });
+  // }
+
 
   cancelEdit(expense: Expense): void {
     expense.isEditing = false;

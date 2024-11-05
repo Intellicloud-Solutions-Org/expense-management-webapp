@@ -16,7 +16,6 @@ export class DashboardService {
   constructor(private http: HttpClient) { }
 
 
-  
   getDashboardData(): Observable<any> {
   
     const dummyData = {
@@ -48,11 +47,8 @@ export class DashboardService {
         ]
       },
   };
-
-   
     return of(dummyData).pipe(delay(1000));
   }
-
 
   getTableData()
     : Observable<any> { 

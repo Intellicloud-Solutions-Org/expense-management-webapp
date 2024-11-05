@@ -1,5 +1,5 @@
 import { CanActivateFn,  Router } from '@angular/router';
-import { AuthService } from '../auth/auth.service'
+//import { AuthService } from '../auth/auth.service'
 import { inject } from '@angular/core';
 import { UserRole} from '../../components/userRole';
 
@@ -18,10 +18,5 @@ export const authGuard: CanActivateFn = (route, state) => {
   return true;
 };
 
- // if (expectedRoles.includes(userRole)) {
-   // return true;
-  //} else {
-    //router.navigate(['/forbidden']);
-    //return false;
-  //}
+
 
