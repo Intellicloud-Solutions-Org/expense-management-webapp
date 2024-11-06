@@ -1,6 +1,12 @@
 <div class="container-fluid content">
 
     <div class="info-box p-4 border bg-light mt-1">
+      <app-login-popups
+                            *ngIf="showPopup"
+                            [title]="popupTitle"
+                            [message]="popupMessage"
+                            (close)="onPopupClose()">
+                          </app-login-popups>
                 <p class="header-top">REPORTS</p> <!--Title-->
               
                 <table class="table table-striped table-bordered">

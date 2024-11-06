@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ReportService } from '../../services/report.service';
 import { Router } from '@angular/router';
-//import { ExpenseService } from '../../services/expense.service';
+import { LoginPopupsComponent } from '../login-popups/login-popups.component';
 
 interface Expense {
   id: number;
@@ -21,7 +21,7 @@ interface Expense {
 @Component({
   selector: 'app-report',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule,  LoginPopupsComponent],
   templateUrl: './report.component.html',
   styleUrl: './report.component.css'
 })
@@ -31,6 +31,12 @@ export class ReportComponent implements OnInit {
   expenses: Expense[] = [];
   currentEditingExpense: Expense | null = null;
   expenseCount: number = 0;
+
+
+  // Popup variables
+  showPopup: boolean = false;
+  popupTitle: string = '';
+  popupMessage: string = '';
 
   constructor(private cdref:ChangeDetectorRef, private router:Router, private reportService: ReportService) { }
 
@@ -45,7 +51,9 @@ export class ReportComponent implements OnInit {
         this.expenseCount = this.expenses.length;
       },
       error: (err) => {
-        console.error('Failed to fetch expenses:', err);
+        this.popupTitle = 'Error';
+        this.popupMessage = 'Failed to fetch expenses. Please try again.';
+        this.showPopup = true;
       }
     });
   }
@@ -90,50 +98,21 @@ export class ReportComponent implements OnInit {
           this.expenses[index] = updatedExpense;
         }
         this.currentEditingExpense = null;
-        console.log('Expense updated successfully:', updatedExpense);
-        alert("Expense updated successfully");
-        expense.isEditing=false;
+        this.popupTitle = 'Success';
+        this.popupMessage = 'Expense updated successfully!';
+        this.showPopup = true;
+        expense.isEditing = false;
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigate(['report']);
       })},
 
       error: (err) => {
-        console.error('Failed to save expense:', err);
-        alert('Failed to save the expense. Please try again.');
+        this.popupTitle = 'Error';
+        this.popupMessage = 'Failed to save the expense. Please try again.';
+        this.showPopup = true;
       }
     });
   }
-
-
-  // saveExpense(expense: Expense, id: number): void {
-  //   const formData = new FormData();
-  //   formData.append('expenseAmount', expense.tempAmount?.toString() ?? '');
-  //   formData.append('expenseType', expense.expenseType ?? '');
-  //   formData.append('receipts', expense.receipts ?? '');
-  //   //formData.append('status', expense.status ?? '');
-  //   //formData.append('id', expense.id);
-
-  
-  //   if (expense.tempReceipt instanceof File) {
-  //     formData.append('receipts', expense.tempReceipt); // Append file if present
-  //   }
-  
-  //   this.reportService.updateExpense(formData, id).subscribe({
-  //     next: (updatedExpense: Expense) => {
-  //       const index = this.expenses.findIndex(e => e.id === updatedExpense.id);
-  //       if (index !== -1) {
-  //         this.expenses[index] = updatedExpense;
-  //       }
-  //       this.currentEditingExpense = null;
-  //       console.log('Expense updated successfully:', updatedExpense);
-  //     },
-  //     error: (err) => {
-  //       console.error('Failed to save expense:', err);
-  //       alert('Failed to save the expense. Please try again.');
-  //     }
-  //   });
-  // }
-
 
   cancelEdit(expense: Expense): void {
     expense.isEditing = false;
@@ -152,14 +131,20 @@ export class ReportComponent implements OnInit {
 
       
         this.expenses = this.expenses.filter(expense => expense.id !== id);
-        console.log('Deleted expense with Emp ID:', id);
-         
+        this.popupTitle = 'Success';
+        this.popupMessage = 'Expense deleted successfully!';
+        this.showPopup = true;
       },
       error: (err) => {
-        console.error('Failed to delete expense:', err);
-        alert('Failed to delete the expense. Please try again.');
+        this.popupTitle = 'Error';
+        this.popupMessage = 'Failed to delete the expense. Please try again.';
+        this.showPopup = true;
       }
     });
   } 
+
+  onPopupClose() {
+    this.showPopup = false;
+  }
 }
   

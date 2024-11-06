@@ -58,13 +58,13 @@
     color: teal;
   }
   .receipt-input{
-    width: 69%;
+    width: 100%;
     cursor: pointer;
   }
 
-  .receipt-input:hover{
+  /* .receipt-input:hover{
     background-color: rgb(215, 241, 241);
-  }
+  } */
 
   .date-group {
     display: flex;

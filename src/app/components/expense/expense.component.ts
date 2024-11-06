@@ -4,12 +4,15 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { ExpenseService } from '../../services/expense.service';
+import { LoginPopupsComponent } from '../login-popups/login-popups.component';
+import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router'; 
 
 
 @Component({
   selector: 'app-expense',
   standalone: true,
-  imports: [FormsModule, CommonModule,  TypeaheadModule ,ReactiveFormsModule],
+  imports: [FormsModule, CommonModule,  TypeaheadModule ,ReactiveFormsModule, LoginPopupsComponent ,  RouterModule  ],
   templateUrl: './expense.component.html',
   styleUrl: './expense.component.css'
 })
@@ -31,10 +34,16 @@ export class ExpenseComponent implements OnInit {
 
   expenseForm: FormGroup;
 
+   // Popup variables
+   showPopup: boolean = false;
+   popupTitle: string = '';
+   popupMessage: string = '';
 
-  constructor(private expenseService: ExpenseService, private fb: FormBuilder ) {
+
+  constructor(private expenseService: ExpenseService, private fb: FormBuilder , private route : Router ) {
     
     const today = new Date();
+
     this.defaultDate = today.toISOString().substring(0, 10);
 
     this.expenseForm = this.fb.group({
@@ -95,18 +104,26 @@ export class ExpenseComponent implements OnInit {
     
       
         this.expenseService.addExpense(formData).subscribe({
-          next: response => {
-            console.log('Expense added successfully:', response);
-            alert('Expense added successfully!');
-            
+          next: (response) => {
+            this.popupTitle = 'Expense Added';
+            this.popupMessage = 'Expense added successfully!';
+            this.showPopup = true;
           },
-          error: error => {
-            console.error('Error adding expense:', error);
-            alert('Failed to add expense. Please try again.');
+          error: (error) => {
+            this.popupTitle = 'Expense Failed';
+            this.popupMessage = 'Failed to add expense. Please try again.';
+            this.showPopup = true;
           }
         });
       }
    }
+
+   onPopupClose() {
+    this.showPopup = false;
+    if (this.popupTitle === 'Expense Added') {
+      this.route.navigate(['report']);
+    }
+  }
   }
   
  

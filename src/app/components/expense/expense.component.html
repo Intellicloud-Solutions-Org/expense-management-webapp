@@ -1,6 +1,12 @@
 <div class="container-fluid content">
 
     <div class="info-box p-4 border bg-light mt-1">
+                         <app-login-popups
+                            *ngIf="showPopup"
+                            [title]="popupTitle"
+                            [message]="popupMessage"
+                            (close)="onPopupClose()">
+                          </app-login-popups>
                 <p class="header-top">EXPENSE</p>
                 <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
                     <!-- Row 1: Date Field -->
@@ -25,32 +31,6 @@
             <input type="text" class="form-control" id="designation" formControlName="designation" placeholder="Employee Designation">
         </div>
     </div>
-                    <!-- <div class="form-row mb-4">
-                        <div  class="col mb-4"> 
-                            <input type="text" class="form-control" id="employeeName" [(ngModel)] ="employeeName" name="employeeName" [ngModelOptions]="{standalone: true}"  placeholder="Employee Name"  disabled >
-                        </div>
-                        <div class="col mb-4">
-                            <input type="text" class="form-control" id="employeeId" [(ngModel)] ="employeeId" name="employeeId" [ngModelOptions]="{standalone: true}" placeholder="Employee ID"   disabled>
-                        </div>
-                        <div class="col mb-4">
-                            <input type="text" class="form-control" id="designation" [(ngModel)] ="designation " name="designation" [ngModelOptions]="{standalone: true}" placeholder="Employee Designation"   disabled>
-                        </div>
-                    </div> -->
-
-                    <!-- Row 3: Manager, Expense Type, Expense Amount -->
-                    <!-- Manager Dropdown-->
-                    <!-- <div class="form-row mb-4">
-                        <div class="col mb-4">
-                            <input type="text"
-                            [(ngModel)]="asyncSelected"
-                            [typeahead]="dataSource"
-                            class="form-control"
-                            (typeaheadLoading)="changeTypeaheadLoading($event)"
-                            (typeaheadNoResults)="changeTypeaheadNoResults($event)"
-                            placeholder="Select Manager (Type here to search..)"
-                            id="typeahead-basic">
-                        </div>
-                        </div> -->
 
                        <!-- Expense Type -->
     <div class="col mb-4">
